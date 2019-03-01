@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "56292789611",
+    "firebase_url": "https://orthodroid-694f1.firebaseio.com",
+    "project_id": "orthodroid-694f1",
+    "storage_bucket": "orthodroid-694f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56292789611:android:9002ef2f5750da77",
+        "android_client_info": {
+          "package_name": "com.example.elbagory.orthodroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56292789611-f98ftj76ffbhsebt3pi2ir6r0n98t339.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.elbagory.orthodroid",
+            "certificate_hash": "06a397e8855f7d5489c8500711d23f0bfa45998b"
+          }
+        },
+        {
+          "client_id": "56292789611-h3qoufihrh4c1slqhg7tveus83djrf3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1RBEL540tImUocMiiNZJK4NNLw2rq5GU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56292789611-h3qoufihrh4c1slqhg7tveus83djrf3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

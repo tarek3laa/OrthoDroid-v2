@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/border"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Lab"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/border"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="chemistry Info" />
+            <EditText
+                android:id="@+id/editTextChemistry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="enter chemistry info"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_container_chemistry"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="9"
+
+                    android:orientation="horizontal"
+                    android:background="@drawable/border"
+                    android:padding="5dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/add_image_chemistry"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/add_image"
+
+                    />
+            </LinearLayout>
+        </LinearLayout><!-- ***********************************  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/border"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="C. S. Info" />
+            <EditText
+                android:id="@+id/editTextCS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="enter C. S. info"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_container_cs"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="9"
+
+                    android:orientation="horizontal"
+                    android:background="@drawable/border"
+                    android:padding="5dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/add_image_cs"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/add_image"
+
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/border"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="cytology Info" />
+            <EditText
+                android:id="@+id/editTextCytology"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="enter cytology info"
+                tools:visibility="visible" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_container_cytology"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="9"
+
+                    android:orientation="horizontal"
+                    android:background="@drawable/border"
+                    android:padding="5dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/add_image_cytology"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/add_image"
+
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/border"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="RAD"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/border"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="X-ray Info" />
+            <EditText
+                android:id="@+id/editTextX_ray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="enter X-ray info"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_container_x_ray"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="9"
+
+                    android:orientation="horizontal"
+                    android:background="@drawable/border"
+                    android:padding="5dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/add_image_x_ray"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/add_image"
+
+                    />
+            </LinearLayout>
+
+        </LinearLayout><!-- ***********************************  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/border"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="scanogram Info" />
+            <EditText
+                android:id="@+id/editTextScanogram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="enter scanogram info"
+               tools:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_container_scanogram"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="9"
+
+                    android:orientation="horizontal"
+                    android:background="@drawable/border"
+                    android:padding="5dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/add_image_scanogram"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/add_image"
+                    />
+            </LinearLayout>
+        </LinearLayout><!-- ***********************************  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/border"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="C.T Info" />
+            <EditText
+                android:id="@+id/editTextC_T"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="enter C.T info"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_container_CT"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="9"
+
+                    android:orientation="horizontal"
+                    android:background="@drawable/border"
+                    android:padding="5dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/add_image_CT"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/add_image"
+                    />
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+        <!-- ***********************************  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/border"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="M.R.I Info" />
+            <EditText
+                android:id="@+id/editTextMRI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="enter M.R.I info"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_container_MRI"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="9"
+
+                    android:orientation="horizontal"
+                    android:background="@drawable/border"
+                    android:padding="5dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/add_image_MRI"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/add_image"
+                    />
+            </LinearLayout>
+
+        </LinearLayout><!-- ***********************************  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/border"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="DEXA Info" />
+            <EditText
+                android:id="@+id/editTextDEXA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="enter DEXA info"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_container_DEXA"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="9"
+
+                    android:orientation="horizontal"
+                    android:background="@drawable/border"
+                    android:padding="5dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/add_image_DEXA"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/add_image"
+                    />
+            </LinearLayout>
+
+        </LinearLayout><!-- ***********************************  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/border"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="Bone Scan Info" />
+            <EditText
+                android:id="@+id/editTextBone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="enter Bone Scan info"
+                tools:visibility="visible" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_container_bone"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="9"
+
+                    android:orientation="horizontal"
+                    android:background="@drawable/border"
+                    android:padding="5dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/add_image_bone"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/add_image"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:background="@drawable/button_style"
+            android:fontFamily="monospace"
+            android:text="save"
+            android:textAllCaps="false"
+            android:textColor="@color/white_color"
+            android:textSize="20sp" />
+    </LinearLayout>
+</ScrollView>
