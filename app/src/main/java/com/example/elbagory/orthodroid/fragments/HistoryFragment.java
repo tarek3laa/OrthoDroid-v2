@@ -1,7 +1,6 @@
 package com.example.elbagory.orthodroid.fragments;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +17,6 @@ import com.example.elbagory.orthodroid.R;
 import com.example.elbagory.orthodroid.UpdatePatientActivity;
 import com.example.elbagory.orthodroid.Utils;
 import com.example.elbagory.orthodroid.adapters.ListImageAdapter;
-import com.facebook.rebound.ui.Util;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -363,15 +361,6 @@ public class HistoryFragment extends Fragment {
 
         }
     }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == Utils.STORAGE_PERMISSION_CODE)  {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(getContext(), "Permission GRANTED", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getContext(), "Permission DENIED", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
+
 
 }
