@@ -2,16 +2,19 @@ package com.example.elbagory.orthodroid.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.elbagory.orthodroid.ImageActivity;
-import com.squareup.picasso.Picasso;
+import com.github.chrisbanes.photoview.PhotoView;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
 
 public class ImageAdapter extends PagerAdapter {
     public static final String IMAGE_URL = "image_url";
@@ -36,17 +39,11 @@ public class ImageAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
-        ImageView imageView = new ImageView(context);
+        PhotoView imageView = new PhotoView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        Picasso.get().load(images.get(position)).resize(50,50).into(imageView);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(context, ImageActivity.class);
-                intent.putExtra(IMAGE_URL,images.get(position));
-                context.startActivity(intent);
-            }
-        });
+        Glide.with(context).load(images.get(position)).into(imageView);
+
+
         container.addView(imageView, 0);
         return imageView;
     }

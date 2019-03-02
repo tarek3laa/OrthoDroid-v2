@@ -118,7 +118,7 @@ public class HomeActivity extends AppCompatActivity implements OnRecyclerViewIte
         switch (view.getId()) {
             case R.id.row_main_adapter_linear_layout:
                 Intent myIntent = new Intent(HomeActivity.this, UpdatePatientActivity.class);
-               int id = recyclerViewRowModels_lists.get(position).getPrivate_id();
+                int id = recyclerViewRowModels_lists.get(position).getPrivate_id();
                 myIntent.putExtra(PRIVATE_ID, id);
                 startActivity(myIntent);
                 break;

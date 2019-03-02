@@ -8,9 +8,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+
 import androidx.core.app.NotificationCompat;
 
-import com.example.elbagory.orthodroid.fragments.SurgeryFragment;
+import static com.example.elbagory.orthodroid.HomeActivity.PRIVATE_ID;
+import static com.example.elbagory.orthodroid.fragments.SurgeryFragment.PATIENT_ID;
 
 /**
  * receive alarm and create a Notification
@@ -18,7 +20,7 @@ import com.example.elbagory.orthodroid.fragments.SurgeryFragment;
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-
+        System.out.println("recive");
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -26,7 +28,8 @@ public class AlarmReceiver extends BroadcastReceiver {
             notificationManager.createNotificationChannel(notificationChannel);
 
         }
-        Intent intent1 = new Intent(context, SurgeryFragment.class);
+        Intent intent1 = new Intent(context, UpdatePatientActivity.class);
+        intent1.putExtra(HomeActivity.PRIVATE_ID, intent.getIntExtra(PATIENT_ID,-1));
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "1")
 
                 .setSmallIcon(R.drawable.logo5)

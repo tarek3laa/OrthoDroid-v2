@@ -226,32 +226,40 @@ public class ExaminationFragment extends Fragment {
                         etElbow.setText(examination.getEtElbow());
 
 
-                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
                     if (examination.getTraumaImages() != null) {
+                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
                         imageAdapter.setList(examination.getTraumaImages());
                         vpTrauma.setVisibility(View.VISIBLE);
                         vpTrauma.setAdapter(imageAdapter);
                     }
 
                     if (examination.getElbowImages() != null) {
+                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
                         vpElbow.setVisibility(View.VISIBLE);
                         imageAdapter.setList(examination.getElbowImages());
 
                         vpElbow.setAdapter(imageAdapter);
                     }
                     if (examination.getFootImages() != null) {
+                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
                         vpFoot.setVisibility(View.VISIBLE);
                         imageAdapter.setList(examination.getFootImages());
 
                         vpFoot.setAdapter(imageAdapter);
                     }
                     if (examination.getKneeImages() != null) {
+                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
                         vpKnee.setVisibility(View.VISIBLE);
                         imageAdapter.setList(examination.getKneeImages());
                         vpKnee.setAdapter(imageAdapter);
                     }
                     if (examination.getShoulderImages() != null) {
 
+                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
 
                         vpShoulder.setVisibility(View.VISIBLE);
                         imageAdapter.setList(examination.getPelvisImages());
@@ -259,11 +267,15 @@ public class ExaminationFragment extends Fragment {
 
                     }
                     if (examination.getSpineImages() != null) {
+                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
                         vpSpine.setVisibility(View.VISIBLE);
                         imageAdapter.setList(examination.getSpineImages());
                         vpSpine.setAdapter(imageAdapter);
                     }
                     if (examination.getPelvisImages() != null) {
+                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
                         vpPelvis.setVisibility(View.VISIBLE);
                         imageAdapter.setList(examination.getShoulderImages());
                         vpShoulder.setAdapter(imageAdapter);
@@ -325,6 +337,7 @@ public class ExaminationFragment extends Fragment {
     }
 
     private void uploadToStorage(String path, final List<String> imageUris, final int type) {
+
         if (imageUris == null) {
             System.out.println("NULL");
             return;

@@ -1,6 +1,7 @@
 package com.example.elbagory.orthodroid.fragments;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import com.example.elbagory.orthodroid.R;
 import com.example.elbagory.orthodroid.UpdatePatientActivity;
 import com.example.elbagory.orthodroid.Utils;
 import com.example.elbagory.orthodroid.adapters.ListImageAdapter;
+import com.facebook.rebound.ui.Util;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +44,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
  * fragment contains History Info
  */
 public class HistoryFragment extends Fragment {
+    private static final int STORAGE_PERMISSION_CODE = 50;
     EditText etChronic, etGastritis, etSmoking, etPregnancy, etLactation;
     private static Model_History model_history;
     // this Primary_key help us to get data for this user
@@ -95,7 +98,7 @@ public class HistoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 rvSmoking.setVisibility(View.VISIBLE);
-
+                //utils.
                 utils.openGallery(HistoryFragment.this, PICK_IMAGE_SMOKING);
             }
         });
@@ -186,34 +189,43 @@ public class HistoryFragment extends Fragment {
                     etPregnancy.setText(history.getPPregnancy());
                 if (history.getPLactation() != null)
                     etLactation.setText(history.getPLactation());
-                ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
                 if (history.getImagesSmoking() != null) {
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
                     rvSmoking.setVisibility(View.VISIBLE);
                     imageAdapter.setList(history.getImagesSmoking());
                     rvSmoking.setAdapter(imageAdapter);
                 }
                 if (history.getImagesChronic() != null) {
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
                     rvChronic.setVisibility(View.VISIBLE);
                     imageAdapter.setList(history.getImagesChronic());
                     rvChronic.setAdapter(imageAdapter);
                 }
                 if (history.getImagesGastritis() != null) {
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
                     rvGastritis.setVisibility(View.VISIBLE);
                     imageAdapter.setList(history.getImagesGastritis());
                     rvGastritis.setAdapter(imageAdapter);
                 }
                 if (history.getImagesPregnancy() != null) {
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
                     rvPregnancy.setVisibility(View.VISIBLE);
                     imageAdapter.setList(history.getImagesPregnancy());
                     rvPregnancy.setAdapter(imageAdapter);
                 }
                 if (history.getImagesLactation() != null) {
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
                     rvLactation.setVisibility(View.VISIBLE);
                     imageAdapter.setList(history.getImagesLactation());
                     rvLactation.setAdapter(imageAdapter);
                 }
 
-            }else System.out.println("Null at history");
+            } else System.out.println("Null at history");
         } catch (Exception e) {
             Log.e(TAG, "onCreateView: ", e);
         }
@@ -222,12 +234,16 @@ public class HistoryFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("from history");
         List<String> urls = utils.getImages(resultCode, data);
         ListImageAdapter image2 = new ListImageAdapter(urls, getContext());
+        if (urls == null) System.out.println("NULL url");
         switch (requestCode) {
             case PICK_IMAGE_SMOKING:
-
+                System.out.println("yes");
+                for (int i = 0; i < urls.size(); i++) {
+                    System.out.println(urls.get(i));
+                }
                 rvSmoking.setAdapter(image2);
                 lists[0] = urls;
                 break;
@@ -345,6 +361,16 @@ public class HistoryFragment extends Fragment {
                 }
             });
 
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == Utils.STORAGE_PERMISSION_CODE)  {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getContext(), "Permission GRANTED", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Permission DENIED", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

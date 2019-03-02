@@ -17,12 +17,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.elbagory.orthodroid.UpdatePatientActivity;
 import com.example.elbagory.orthodroid.AlarmReceiver;
 import com.example.elbagory.orthodroid.Models.Surgery;
 import com.example.elbagory.orthodroid.R;
+import com.example.elbagory.orthodroid.UpdatePatientActivity;
 import com.example.elbagory.orthodroid.Utils;
-import com.example.elbagory.orthodroid.adapters.ImageAdapter;
+import com.example.elbagory.orthodroid.adapters.ListImageAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +39,8 @@ import java.util.Random;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private static final int PENDING_INTENT_RC = 100;
@@ -48,16 +49,18 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
     private EditText etTitle, etAddress;
     private TextView tvTime;
     private Button btNewImages;
-    private ViewPager vpImagesContainer;
+    private RecyclerView vpImagesContainer;
     private String time = "00:00 AM";
     private String date = "12/12/1970";
     private int PICK_IMAGE_MULTIPLE = 1;
-    Surgery surgery;
+    static Surgery surgery;
     private Button btSave;
+
     Utils utils = new Utils();
     List<String> urls;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     final DatabaseReference databaseReference = firebaseDatabase.getReference();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,6 +72,26 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
         etAddress = view.findViewById(R.id.editTextAddress);
         tvTime = view.findViewById(R.id.textViewTime);
         btNewImages = view.findViewById(R.id.buttonNewImage);
+        vpImagesContainer = view.findViewById(R.id.images_container);
+        vpImagesContainer.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        try {
+            Surgery surgery = UpdatePatientActivity.allInfo.getSurgery();
+            if (surgery != null) {
+
+                etTitle.setText(surgery.getTitle());
+                etAddress.setText(surgery.getAddress());
+                tvTime.setText(surgery.getTime());
+                if (surgery.getImages() != null) {
+                    ListImageAdapter imageAdapter = new ListImageAdapter(surgery.getImages(), getContext());
+                    vpImagesContainer.setAdapter(imageAdapter);
+                }
+
+            }
+        } catch (Exception e) {
+
+        }
+
         // open dialog to chose date and time
         tvTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +118,7 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
                 databaseReference.child(PatientFragment.ALL_PATIENT).child(String.valueOf(UpdatePatientActivity.patientID)).setValue(UpdatePatientActivity.allInfo);
 
 
-                uploadToStorage("surgery",urls);
+                uploadToStorage("surgery", urls);
             }
         });
 
@@ -117,6 +140,8 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
         ALARM_TIME.set(Calendar.YEAR, i);
         ALARM_TIME.set(Calendar.MONTH, i1);
         ALARM_TIME.set(Calendar.DAY_OF_MONTH, i2);
+
+        System.out.println(i + " " + i1 + 1 + " " + i2);
         // save choosing date
         date = String.valueOf(i2) + "/" + String.valueOf(i1 + 1) + "/" + String.valueOf(i);
         // open time picker dialog to set time
@@ -137,11 +162,13 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
         ALARM_TIME.set(Calendar.MINUTE, i1);
         ALARM_TIME.set(Calendar.SECOND, 0);
         // convert time from 24 to 12 hour
+        System.out.println(i);
         String state = "am";
-        if (i > 12) {
+        if (i <= 23 && i > 12) {
             i -= 12;
             state = "pm";
-        }
+        } else if (i == 12) state = "pm";
+        else if (i == 0) i += 12;
         // save choosing time
         time = String.valueOf(i) + " : " + String.valueOf(i1) + " " + state;
 
@@ -155,9 +182,9 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
             urls = utils.getImages(resultCode, data);
 
             // set images to view pager
-            vpImagesContainer = getActivity().findViewById(R.id.images_container);
-            ImageAdapter imageAdapter = new ImageAdapter(getActivity(), urls);
-            vpImagesContainer.setAdapter(imageAdapter);
+
+            ListImageAdapter listImageAdapter = new ListImageAdapter(urls, getContext());
+            vpImagesContainer.setAdapter(listImageAdapter);
         }
     }
 
@@ -166,11 +193,12 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
 
         final long hour = (long) 3.6e+6;
 
-        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(getActivity(), AlarmReceiver.class);
+        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getContext(), AlarmReceiver.class);
         intent.putExtra(PATIENT_ID, UpdatePatientActivity.patientID);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), PENDING_INTENT_RC, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, (time), pendingIntent);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), PENDING_INTENT_RC, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, (time - hour), pendingIntent);
 
     }
 

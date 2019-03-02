@@ -220,7 +220,6 @@ public class InvestigationFragment extends Fragment {
             Model_Investigation investigation = null;
             if (allInfo.getInvestigation() != null) investigation = allInfo.getInvestigation();
             if (investigation != null) {
-                // etChemistry, etCS, etCytology, etXray, etScanogram, etCT, etMRI, etDEXA, etBoneScan;
                 if (investigation.getEtChemistry() != null)
                     etChemistry.setText(investigation.getEtChemistry());
                 if (investigation.getEtCS() != null) etCS.setText(investigation.getEtCS());
@@ -234,6 +233,72 @@ public class InvestigationFragment extends Fragment {
                 if (investigation.getEtDEXA() != null) etDEXA.setText(investigation.getEtDEXA());
                 if (investigation.getEtBoneScan() != null)
                     etBoneScan.setText(investigation.getEtBoneScan());
+
+                // etChemistry, etCS, etCytology, etXray, etScanogram, etCT, etMRI, etDEXA, etBoneScan;
+
+
+                if (investigation.getImagesChemistry() != null) {
+                    rvChemistry.setVisibility(View.VISIBLE);
+                    ListImageAdapter imageAdapter = new ListImageAdapter(investigation.getImagesChemistry(), getContext());
+                    rvChemistry.setAdapter(imageAdapter);
+                }
+                if (investigation.getImagesCS() != null) {
+                    rvCS.setVisibility(View.VISIBLE);
+                    ListImageAdapter imageAdapter = new ListImageAdapter(investigation.getImagesCS(), getContext());
+                    rvCS.setAdapter(imageAdapter);
+                }
+
+
+                if (investigation.getImagesCytology() != null) {
+                    rvCytology.setVisibility(View.VISIBLE);
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
+                    imageAdapter.setList(investigation.getImagesCytology());
+                    rvCytology.setAdapter(imageAdapter);
+                }
+                if (investigation.getImagesXray() != null) {
+                    rvXray.setVisibility(View.VISIBLE);
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
+                    imageAdapter.setList(investigation.getImagesXray());
+                    rvXray.setAdapter(imageAdapter);
+                }
+                if (investigation.getImagesScanogram() != null) {
+                    rvScanogram.setVisibility(View.VISIBLE);
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
+                    imageAdapter.setList(investigation.getImagesScanogram());
+                    rvScanogram.setAdapter(imageAdapter);
+                }
+                if (investigation.getImagesCT() != null) {
+                    rvCT.setVisibility(View.VISIBLE);
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
+                    imageAdapter.setList(investigation.getImagesCT());
+                    rvCT.setAdapter(imageAdapter);
+                }
+                if (investigation.getImagesMRI() != null) {
+                    rvMRI.setVisibility(View.VISIBLE);
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
+                    imageAdapter.setList(investigation.getImagesMRI());
+                    rvMRI.setAdapter(imageAdapter);
+                }
+                if (investigation.getImagesDEXA() != null) {
+                    rvDexa.setVisibility(View.VISIBLE);
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
+                    imageAdapter.setList(investigation.getImagesDEXA());
+                    rvDexa.setAdapter(imageAdapter);
+                }
+                if (investigation.getImagesBone() != null) {
+                    rvBone.setVisibility(View.VISIBLE);
+                    ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+
+                    imageAdapter.setList(investigation.getImagesBone());
+                    rvBone.setAdapter(imageAdapter);
+                }
+
 
             }
 

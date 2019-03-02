@@ -8,9 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.elbagory.orthodroid.UpdatePatientActivity;
 import com.example.elbagory.orthodroid.Models.Model_Operation;
 import com.example.elbagory.orthodroid.R;
+import com.example.elbagory.orthodroid.UpdatePatientActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.sdsmdg.tastytoast.TastyToast;
@@ -18,6 +18,8 @@ import com.sdsmdg.tastytoast.TastyToast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import static com.example.elbagory.orthodroid.UpdatePatientActivity.allInfo;
 
 /**
  * fragment contains Operation info
@@ -75,6 +77,28 @@ public class OperationFragment extends Fragment {
 
             }
         });
+        try {
+
+            Model_Operation operation = null;
+
+            if (allInfo.getOperation() != null) operation = allInfo.getOperation();
+            if (operation != null) {
+                // , , etPersonName, etFollow;
+                if (operation.getEtOperationName() != null)
+                    etOperationName.setText(operation.getEtOperationName());
+                if (operation.getEtDate() != null)
+                    etDate.setText(operation.getEtDate());
+                if (operation.getEtSteps() != null)
+                    etSteps.setText(operation.getEtSteps());
+                if (operation.getEtPersonName() != null)
+                    etPersonName.setText(operation.getEtPersonName());
+                if (operation.getEtFollow() != null)
+                    etFollow.setText(operation.getEtFollow());
+            }
+
+        } catch (Exception e) {
+
+        }
 
 
         return view;

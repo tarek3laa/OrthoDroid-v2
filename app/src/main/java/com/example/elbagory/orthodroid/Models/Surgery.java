@@ -11,6 +11,8 @@ public class Surgery implements Serializable {
     private static String time;
     private static List<String> images;
 
+    public Surgery() {
+    }
 
     public List<String> getImages() {
         return images;
