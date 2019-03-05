@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elbagory.orthodroid.Models.Model_Examination;
@@ -17,8 +19,10 @@ import com.example.elbagory.orthodroid.R;
 import com.example.elbagory.orthodroid.UpdatePatientActivity;
 import com.example.elbagory.orthodroid.Utils;
 import com.example.elbagory.orthodroid.adapters.ListImageAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -58,7 +62,11 @@ public class ExaminationFragment extends Fragment {
     List<String>[] lists = new ArrayList[7];
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     final DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private int progress = 0;
+    private int sizeOfLists = 0;
 
+    private ProgressBar progressBar;
+    private TextView textViewProgress;
 
     private static Model_Examination model_examination;
 
@@ -76,6 +84,9 @@ public class ExaminationFragment extends Fragment {
             ivPelvis = view.findViewById(R.id.add_image_pelvis);
             ivFoot = view.findViewById(R.id.add_image_foot);
             ivElbow = view.findViewById(R.id.add_image_elbow);
+
+            progressBar = view.findViewById(R.id.progressBar);
+            textViewProgress = view.findViewById(R.id.textView_progress);
 
             vpTrauma = view.findViewById(R.id.images_container_trauma);
             vpKnee = view.findViewById(R.id.images_container_knee);
@@ -343,6 +354,10 @@ public class ExaminationFragment extends Fragment {
             return;
         } else {
             System.out.println("NOT NULL");
+
+            sizeOfLists += imageUris.size();
+            progressBar.setVisibility(View.VISIBLE);
+            textViewProgress.setVisibility(View.VISIBLE);
         }
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -451,6 +466,22 @@ public class ExaminationFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     System.out.println("fail  " + e);
+                }
+            }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    ++progress;
+                    if (progress < sizeOfLists) {
+
+                        textViewProgress.setText(progress + " / " + sizeOfLists + " images uploaded\n      pleas wait");
+                    } else if (progress == sizeOfLists) {
+                        textViewProgress.setText("uploaded Successfully");
+
+                        textViewProgress.setVisibility(View.INVISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        progress = 0;
+                        sizeOfLists = 0;
+                    }
                 }
             });
 

@@ -11,24 +11,30 @@ public class Model_History {
     public Model_History() {
     }
 
+    public Model_History(String PChronic, String etGastritis, String etSmoking, String etPregnancy, String etLactation, int Privateid) {
+        Model_History.PChronic = PChronic;
+        PGastritis = etGastritis;
+        PSmoking = etSmoking;
+        PPregnancy = etPregnancy;
+        PLactation = etLactation;
+        Private_id = Privateid;
+
+    }
+
     public void setPChronic(String PChronic) {
-        this.PChronic = PChronic;
+        Model_History.PChronic = PChronic;
     }
 
     public void setPGastritis(String PGastritis) {
-        this.PGastritis = PGastritis;
+        Model_History.PGastritis = PGastritis;
     }
 
     public void setPSmoking(String PSmoking) {
-        this.PSmoking = PSmoking;
+        Model_History.PSmoking = PSmoking;
     }
 
     public void setPPregnancy(String PPregnancy) {
-        this.PPregnancy = PPregnancy;
-    }
-
-    public void setPLactation(String PLactation) {
-        this.PLactation = PLactation;
+        Model_History.PPregnancy = PPregnancy;
     }
 
     public void setPrivate_id(int private_id) {
@@ -39,50 +45,44 @@ public class Model_History {
         return imagesSmoking;
     }
 
-    public void setImagesSmoking(List<String> imagesSmoking) {
-        this.imagesSmoking = imagesSmoking;
+    public void setPLactation(String PLactation) {
+        Model_History.PLactation = PLactation;
     }
 
     public List<String> getImagesChronic() {
         return imagesChronic;
     }
 
-    public void setImagesChronic(List<String> imagesChronic) {
-        this.imagesChronic = imagesChronic;
+    public void setImagesSmoking(List<String> imagesSmoking) {
+        Model_History.imagesSmoking = imagesSmoking;
     }
 
     public List<String> getImagesGastritis() {
         return imagesGastritis;
     }
 
-    public void setImagesGastritis(List<String> imagesGastritis) {
-        this.imagesGastritis = imagesGastritis;
+    public void setImagesChronic(List<String> imagesChronic) {
+        Model_History.imagesChronic = imagesChronic;
     }
 
     public List<String> getImagesPregnancy() {
         return imagesPregnancy;
     }
 
-    public void setImagesPregnancy(List<String> imagesPregnancy) {
-        this.imagesPregnancy = imagesPregnancy;
+    public void setImagesGastritis(List<String> imagesGastritis) {
+        Model_History.imagesGastritis = imagesGastritis;
     }
 
     public List<String> getImagesLactation() {
         return imagesLactation;
     }
 
-    public void setImagesLactation(List<String> imagesLactation) {
-        this.imagesLactation = imagesLactation;
+    public void setImagesPregnancy(List<String> imagesPregnancy) {
+        Model_History.imagesPregnancy = imagesPregnancy;
     }
 
-    public Model_History(String PChronic, String etGastritis, String etSmoking, String etPregnancy, String etLactation, int Privateid) {
-        this.PChronic = PChronic;
-        this.PGastritis = etGastritis;
-        this.PSmoking = etSmoking;
-        this.PPregnancy = etPregnancy;
-        this.PLactation = etLactation;
-        this.Private_id = Privateid;
-
+    public void setImagesLactation(List<String> imagesLactation) {
+        Model_History.imagesLactation = imagesLactation;
     }
 
 

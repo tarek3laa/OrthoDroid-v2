@@ -1,303 +1,358 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:layout_height="match_parent">
 
-    >
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Smoking Info" />
+
+                <EditText
+                    android:id="@+id/smoking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="enter smoking info"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_smoking"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
+                        android:background="@drawable/border"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/add_image_smoking"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <!-- ***********************************  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Chronic Info" />
+
+                <EditText
+                    android:id="@+id/ch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="enter chronic info"
+                    tools:visibility="visible" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_chronic"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
+                        android:background="@drawable/border"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/add_image_chronic"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ***********************************  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Gastritis Info" />
+
+                <EditText
+                    android:id="@+id/ga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="enter gastritis info"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_gastritis"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
+                        android:background="@drawable/border"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/add_image_gastritis"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <!-- ***********************************  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Pregnancy Info" />
+
+                <EditText
+                    android:id="@+id/pr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="enter pregnancy info"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_pregnancy"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
+                        android:background="@drawable/border"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/add_image_pregnancy"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <!-- ***********************************  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Lactation Info" />
+
+                <EditText
+                    android:id="@+id/la"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="enter lactation info"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_lactation"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
+                        android:background="@drawable/border"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/add_image_lactation"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
+
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/button_style"
+                android:fontFamily="monospace"
+                android:text="save"
+                android:textAllCaps="false"
+                android:textColor="@color/white_color"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Smoking Info" />
-
-            <EditText
-                android:id="@+id/smoking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="enter smoking info"
-                tools:visibility="visible" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-
-                >
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_smoking"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/add_image_smoking"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/add_image"
-
-                    />
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <!-- ***********************************  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Chronic Info" />
-
-            <EditText
-                android:id="@+id/ch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:hint="enter chronic info"
-                tools:visibility="visible" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_chronic"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/add_image_chronic"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/add_image"
-
-                    />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- ***********************************  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Gastritis Info" />
-
-            <EditText
-                android:id="@+id/ga"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:hint="enter gastritis info"
-                tools:visibility="visible" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-
-                >
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_gastritis"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/add_image_gastritis"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/add_image"
-
-                    />
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <!-- ***********************************  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Pregnancy Info" />
-
-            <EditText
-                android:id="@+id/pr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:hint="enter pregnancy info"
-                tools:visibility="visible" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-
-                >
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_pregnancy"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/add_image_pregnancy"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/add_image"
-
-                    />
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <!-- ***********************************  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Lactation Info" />
-
-            <EditText
-                android:id="@+id/la"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:hint="enter lactation info"
-                tools:visibility="visible" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-
-                >
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_lactation"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/add_image_lactation"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/add_image"
-
-                    />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:background="@drawable/button_style"
-            android:fontFamily="monospace"
-            android:text="save"
-            android:textAllCaps="false"
-            android:textColor="@color/white_color"
-            android:textSize="20sp" />
-    </LinearLayout>
-</ScrollView>
+    <TextView
+        android:id="@+id/textView_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:text="pleas wait until upload images"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:visibility="invisible"
+        android:textStyle="bold"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

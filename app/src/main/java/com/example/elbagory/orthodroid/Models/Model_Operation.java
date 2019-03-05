@@ -10,11 +10,11 @@ public class Model_Operation {
     }
 
     public Model_Operation(String etOperationName, String etDate, String etSteps, String etPersonName, String etFollow, int private_id) {
-        this.etOperationName = etOperationName;
-        this.etDate = etDate;
-        this.etSteps = etSteps;
-        this.etPersonName = etPersonName;
-        this.etFollow = etFollow;
+        Model_Operation.etOperationName = etOperationName;
+        Model_Operation.etDate = etDate;
+        Model_Operation.etSteps = etSteps;
+        Model_Operation.etPersonName = etPersonName;
+        Model_Operation.etFollow = etFollow;
         Private_id = private_id;
     }
 
@@ -43,23 +43,23 @@ public class Model_Operation {
     }
 
     public void setEtOperationName(String etOperationName) {
-        this.etOperationName = etOperationName;
+        Model_Operation.etOperationName = etOperationName;
     }
 
     public void setEtDate(String etDate) {
-        this.etDate = etDate;
+        Model_Operation.etDate = etDate;
     }
 
     public void setEtSteps(String etSteps) {
-        this.etSteps = etSteps;
+        Model_Operation.etSteps = etSteps;
     }
 
     public void setEtPersonName(String etPersonName) {
-        this.etPersonName = etPersonName;
+        Model_Operation.etPersonName = etPersonName;
     }
 
     public void setEtFollow(String etFollow) {
-        this.etFollow = etFollow;
+        Model_Operation.etFollow = etFollow;
     }
 
     public void setPrivate_id(int private_id) {

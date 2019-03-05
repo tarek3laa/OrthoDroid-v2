@@ -26,18 +26,19 @@ import androidx.viewpager.widget.ViewPager;
 
 public class UpdatePatientActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    ViewPager viewPager;
     public static AllInfo allInfo;
     public static int patientID = -1;
-    public static boolean su = false;
+    ViewPager viewPager;
     ProgressDialog pd;
+    private boolean su = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_patient);
         System.out.println("hello ........");
         try {
-            pd=new ProgressDialog(this);
+            pd = new ProgressDialog(this);
             pd.setMessage("loading");
             pd.show();
             Intent intent = getIntent();
@@ -51,12 +52,15 @@ public class UpdatePatientActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     System.out.println("HI");
                     UpdatePatientActivity.allInfo = dataSnapshot.getValue(AllInfo.class);
-                    su = true;
-                    viewPager = findViewById(R.id.container);
-                    setSectionPageAdapter(viewPager);
-                    TabLayout tabLayout = findViewById(R.id.tabs);
-                    tabLayout.setupWithViewPager(viewPager);
-                    PatientFragment.update();
+
+                    if (!su) {
+                        su = true;
+                        viewPager = findViewById(R.id.container);
+                        setSectionPageAdapter(viewPager);
+                        TabLayout tabLayout = findViewById(R.id.tabs);
+                        tabLayout.setupWithViewPager(viewPager);
+                        PatientFragment.update();
+                    }
                     pd.dismiss();
                 }
 

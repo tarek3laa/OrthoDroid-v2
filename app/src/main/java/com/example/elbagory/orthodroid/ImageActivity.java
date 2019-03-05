@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.elbagory.orthodroid.adapters.ImageAdapter;
-import com.example.elbagory.orthodroid.adapters.ListImageAdapter;
 
 import java.util.ArrayList;
 

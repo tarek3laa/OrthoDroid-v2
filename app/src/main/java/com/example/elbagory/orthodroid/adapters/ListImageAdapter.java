@@ -26,15 +26,14 @@ public class ListImageAdapter extends RecyclerView.Adapter<ListImageAdapter.Hold
     List<String> list;
     Context context;
 
-    public void setList(List<String> list) {
-        this.list = list;
-    }
-
     public ListImageAdapter(List<String> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
+    public void setList(List<String> list) {
+        this.list = list;
+    }
 
     @NonNull
     @Override

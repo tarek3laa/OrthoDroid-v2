@@ -32,7 +32,6 @@
         </activity>
         <activity android:name=".UpdatePatientActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".ShowAllPatientInfo" />
 
         <activity
             android:name="com.darsh.multipleimageselect.activities.AlbumSelectActivity"
@@ -42,15 +41,6 @@
             </intent-filter>
         </activity>
 
-
-
-        <!--  <activity
-              android:name="com.darsh.multipleimageselect.activities.AlbumSelectActivity"
-              android:theme="@style/MultipleImageSelectTheme">
-              <intent-filter>
-                  <category android:name="android.intent.category.DEFAULT" />
-              </intent-filter>
-          </activity> -->
 
         <receiver android:name=".AlarmReceiver" />
 

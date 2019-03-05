@@ -16,44 +16,44 @@ public class AllInfo {
         return examination;
     }
 
-    public Model_History getHistory() {
-        return history;
-    }
-
-    public Model_Investigation getInvestigation() {
-        return investigation;
-    }
-
-    public Model_Operation getOperation() {
-        return operation;
-    }
-
-    public Model_Patient getPatient() {
-        return patient;
-    }
-
-    public Surgery getSurgery() {
-        return surgery;
-    }
-
     public void setExamination(Model_Examination examination) {
         this.examination = examination;
+    }
+
+    public Model_History getHistory() {
+        return history;
     }
 
     public void setHistory(Model_History history) {
         this.history = history;
     }
 
+    public Model_Investigation getInvestigation() {
+        return investigation;
+    }
+
     public void setInvestigation(Model_Investigation investigation) {
         this.investigation = investigation;
+    }
+
+    public Model_Operation getOperation() {
+        return operation;
     }
 
     public void setOperation(Model_Operation operation) {
         this.operation = operation;
     }
 
+    public Model_Patient getPatient() {
+        return patient;
+    }
+
     public void setPatient(Model_Patient patient) {
         this.patient = patient;
+    }
+
+    public Surgery getSurgery() {
+        return surgery;
     }
 
     public void setSurgery(Surgery surgery) {

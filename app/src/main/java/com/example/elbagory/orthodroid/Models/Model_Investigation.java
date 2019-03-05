@@ -11,40 +11,49 @@ public class Model_Investigation {
     public Model_Investigation() {
     }
 
+    public Model_Investigation(String etChemistry, String etCS, String etCytology, String etXray, String etScanogram, String etCT, String etMRI, String etDEXA, String etBoneScan, int private_id) {
+        Model_Investigation.etChemistry = etChemistry;
+        Model_Investigation.etCS = etCS;
+        Model_Investigation.etCytology = etCytology;
+        Model_Investigation.etXray = etXray;
+        Model_Investigation.etScanogram = etScanogram;
+        Model_Investigation.etCT = etCT;
+        Model_Investigation.etMRI = etMRI;
+        Model_Investigation.etDEXA = etDEXA;
+        Model_Investigation.etBoneScan = etBoneScan;
+        Private_id = private_id;
+    }
+
     public void setEtChemistry(String etChemistry) {
-        this.etChemistry = etChemistry;
+        Model_Investigation.etChemistry = etChemistry;
     }
 
     public void setEtCS(String etCS) {
-        this.etCS = etCS;
+        Model_Investigation.etCS = etCS;
     }
 
     public void setEtCytology(String etCytology) {
-        this.etCytology = etCytology;
+        Model_Investigation.etCytology = etCytology;
     }
 
     public void setEtXray(String etXray) {
-        this.etXray = etXray;
+        Model_Investigation.etXray = etXray;
     }
 
     public void setEtScanogram(String etScanogram) {
-        this.etScanogram = etScanogram;
+        Model_Investigation.etScanogram = etScanogram;
     }
 
     public void setEtCT(String etCT) {
-        this.etCT = etCT;
+        Model_Investigation.etCT = etCT;
     }
 
     public void setEtMRI(String etMRI) {
-        this.etMRI = etMRI;
+        Model_Investigation.etMRI = etMRI;
     }
 
     public void setEtDEXA(String etDEXA) {
-        this.etDEXA = etDEXA;
-    }
-
-    public void setEtBoneScan(String etBoneScan) {
-        this.etBoneScan = etBoneScan;
+        Model_Investigation.etDEXA = etDEXA;
     }
 
     public void setPrivate_id(int private_id) {
@@ -55,85 +64,76 @@ public class Model_Investigation {
         return imagesChemistry;
     }
 
-    public void setImagesChemistry(List<String> imagesChemistry) {
-        this.imagesChemistry = imagesChemistry;
+    public void setEtBoneScan(String etBoneScan) {
+        Model_Investigation.etBoneScan = etBoneScan;
     }
 
     public List<String> getImagesCS() {
         return imagesCS;
     }
 
-    public void setImagesCS(List<String> imagesCS) {
-        this.imagesCS = imagesCS;
+    public void setImagesChemistry(List<String> imagesChemistry) {
+        Model_Investigation.imagesChemistry = imagesChemistry;
     }
 
     public List<String> getImagesCytology() {
         return imagesCytology;
     }
 
-    public void setImagesCytology(List<String> imagesCytology) {
-        this.imagesCytology = imagesCytology;
+    public void setImagesCS(List<String> imagesCS) {
+        Model_Investigation.imagesCS = imagesCS;
     }
 
     public List<String> getImagesXray() {
         return imagesXray;
     }
 
-    public void setImagesXray(List<String> imagesXray) {
-        this.imagesXray = imagesXray;
+    public void setImagesCytology(List<String> imagesCytology) {
+        Model_Investigation.imagesCytology = imagesCytology;
     }
 
     public List<String> getImagesScanogram() {
         return imagesScanogram;
     }
 
-    public void setImagesScanogram(List<String> imagesScanogram) {
-        this.imagesScanogram = imagesScanogram;
+    public void setImagesXray(List<String> imagesXray) {
+        Model_Investigation.imagesXray = imagesXray;
     }
 
     public List<String> getImagesCT() {
         return imagesCT;
     }
 
-    public void setImagesCT(List<String> imagesCT) {
-        this.imagesCT = imagesCT;
+    public void setImagesScanogram(List<String> imagesScanogram) {
+        Model_Investigation.imagesScanogram = imagesScanogram;
     }
 
     public List<String> getImagesMRI() {
         return imagesMRI;
     }
 
-    public void setImagesMRI(List<String> imagesMRI) {
-        this.imagesMRI = imagesMRI;
+    public void setImagesCT(List<String> imagesCT) {
+        Model_Investigation.imagesCT = imagesCT;
     }
 
     public List<String> getImagesDEXA() {
         return imagesDEXA;
     }
 
-    public void setImagesDEXA(List<String> imagesDEXA) {
-        this.imagesDEXA = imagesDEXA;
+    public void setImagesMRI(List<String> imagesMRI) {
+        Model_Investigation.imagesMRI = imagesMRI;
     }
 
     public List<String> getImagesBone() {
         return imagesBone;
     }
 
-    public void setImagesBone(List<String> imagesBone) {
-        this.imagesBone = imagesBone;
+    public void setImagesDEXA(List<String> imagesDEXA) {
+        Model_Investigation.imagesDEXA = imagesDEXA;
     }
 
-    public Model_Investigation(String etChemistry, String etCS, String etCytology, String etXray, String etScanogram, String etCT, String etMRI, String etDEXA, String etBoneScan, int private_id) {
-        this.etChemistry = etChemistry;
-        this.etCS = etCS;
-        this.etCytology = etCytology;
-        this.etXray = etXray;
-        this.etScanogram = etScanogram;
-        this.etCT = etCT;
-        this.etMRI = etMRI;
-        this.etDEXA = etDEXA;
-        this.etBoneScan = etBoneScan;
-        Private_id = private_id;
+    public void setImagesBone(List<String> imagesBone) {
+        Model_Investigation.imagesBone = imagesBone;
     }
 
     public String getEtChemistry() {

@@ -38,19 +38,13 @@ dependencies {
 
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
-   // implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
     implementation 'com.firebase:firebase-client-android:2.3.1'
     implementation 'com.google.firebase:firebase-core:16.0.7'
-   // implementation 'com.zhihu.android:matisse:0.5.1'
-      implementation 'com.github.darsh2:MultipleImageSelect:v0.0.4'
-//    implementation 'com.github.ParkSangGwon:TedPicker:0.0.0'
-
-
- //  implementation 'com.zfdang.multiple-images-selector:multiple-images-selector:1.1.5'
+    implementation 'com.github.darsh2:MultipleImageSelect:v0.0.4'
 
 }
 

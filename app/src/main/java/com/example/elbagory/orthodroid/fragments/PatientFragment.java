@@ -51,9 +51,6 @@ public class PatientFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_patient_info, container, false);
 
-        //fire base
-        // while (!UpdatePatientActivity.su) ;
-
         // get the value of Primary_key
         Primary_key = UpdatePatientActivity.patientID;
 

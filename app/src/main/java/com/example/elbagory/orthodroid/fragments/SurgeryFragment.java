@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -23,13 +24,16 @@ import com.example.elbagory.orthodroid.R;
 import com.example.elbagory.orthodroid.UpdatePatientActivity;
 import com.example.elbagory.orthodroid.Utils;
 import com.example.elbagory.orthodroid.adapters.ListImageAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -55,6 +59,11 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
     private int PICK_IMAGE_MULTIPLE = 1;
     static Surgery surgery;
     private Button btSave;
+    private int progress = 0;
+    private int sizeOfLists = 0;
+
+    private ProgressBar progressBar;
+    private TextView textViewProgress;
 
     Utils utils = new Utils();
     List<String> urls;
@@ -75,6 +84,8 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
         vpImagesContainer = view.findViewById(R.id.images_container);
         vpImagesContainer.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
+        progressBar = view.findViewById(R.id.progressBar);
+        textViewProgress = view.findViewById(R.id.textView_progress);
         try {
             Surgery surgery = UpdatePatientActivity.allInfo.getSurgery();
             if (surgery != null) {
@@ -87,7 +98,7 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
                     vpImagesContainer.setAdapter(imageAdapter);
                 }
 
-            }
+            }else System.out.println("NULL surgery");
         } catch (Exception e) {
 
         }
@@ -114,10 +125,10 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
             public void onClick(View v) {
                 surgery = new Surgery(etTitle.getText().toString(), etAddress.getText().toString(), tvTime.getText().toString());
                 setAlarm(ALARM_TIME.getTimeInMillis());
-
+                UpdatePatientActivity.allInfo.setSurgery(surgery);
                 databaseReference.child(PatientFragment.ALL_PATIENT).child(String.valueOf(UpdatePatientActivity.patientID)).setValue(UpdatePatientActivity.allInfo);
 
-
+                TastyToast.makeText(getContext(),"saved",TastyToast.LENGTH_SHORT,TastyToast.SUCCESS);
                 uploadToStorage("surgery", urls);
             }
         });
@@ -209,6 +220,9 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
             return;
         } else {
             System.out.println("NOT NULL");
+            sizeOfLists += imageUris.size();
+            progressBar.setVisibility(View.VISIBLE);
+            textViewProgress.setVisibility(View.VISIBLE);
         }
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -248,6 +262,22 @@ public class SurgeryFragment extends Fragment implements DatePickerDialog.OnDate
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     System.out.println("fail  " + e);
+                }
+            }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    ++progress;
+                    if (progress < sizeOfLists) {
+
+                        textViewProgress.setText(progress + " / " + sizeOfLists + " images uploaded\n      pleas wait");
+                    } else if (progress == sizeOfLists) {
+                        textViewProgress.setText("uploaded Successfully");
+
+                        textViewProgress.setVisibility(View.INVISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        progress = 0;
+                        sizeOfLists = 0;
+                    }
                 }
             });
 

@@ -1,409 +1,454 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
 
     >
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:orientation="vertical">
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Trauma Info" />
-
-            <EditText
-                android:id="@+id/editTextTrauma"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="2dp"
-                android:layout_weight="3"
-                android:hint="enter trauma info"
-                tools:visibility="visible" />
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
 
-                >
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_trauma"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_margin="2dp"
-                    android:layout_weight="9"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Trauma Info" />
 
+                <EditText
+                    android:id="@+id/editTextTrauma"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="3"
+                    android:hint="enter trauma info"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
 
-                <ImageView
-                    android:id="@+id/add_image_trauma"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/add_image"
+                    >
 
-                    />
-            </LinearLayout>
-        </LinearLayout><!-- ***********************************  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_trauma"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Knee Info" />
+                        android:background="@drawable/border"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:visibility="gone" />
 
-            <EditText
-                android:id="@+id/editTextKnee"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:hint="enter knee info"
-                tools:visibility="visible" />
+                    <ImageView
+                        android:id="@+id/add_image_trauma"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
 
+                        />
+                </LinearLayout>
+            </LinearLayout><!-- ***********************************  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_knee"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_margin="2dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Knee Info" />
 
-                <ImageView
-                    android:id="@+id/add_image_knee"
-
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
+                <EditText
+                    android:id="@+id/editTextKnee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="2dp"
+                    android:hint="enter knee info"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/add_image"
+                    android:orientation="horizontal">
 
-                    />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_knee"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
+                        android:background="@drawable/border"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/add_image_knee"
+
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
+
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <!-- ***********************************  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Shoulder Info" />
+
+                <EditText
+                    android:id="@+id/editTextShoulder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:hint="enter shoulder info"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_shoulder"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
+                        android:background="@drawable/border"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/add_image_shoulder"
+
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
+
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout><!-- ***********************************  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Spine Info" />
+
+                <EditText
+                    android:id="@+id/editTextSpine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:hint="enter spine info"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_spine"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
+                        android:background="@drawable/border"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/add_image_spine"
+
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
+
+                        />
+                </LinearLayout>
+            </LinearLayout><!-- ***********************************  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Pelvis Info" />
+
+                <EditText
+                    android:id="@+id/editTextPelvis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:hint="enter Pelvis info"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_pelvis"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
+                        android:background="@drawable/border"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/add_image_pelvis"
+
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
+
+                        />
+                </LinearLayout>
+            </LinearLayout><!-- ***********************************  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="foot Info" />
+
+                <EditText
+                    android:id="@+id/editTextFoot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:hint="enter foot info"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_foot"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
+                        android:background="@drawable/border"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/add_image_foot"
+
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
+
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- ***********************************  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Elbow Info" />
+
+                <EditText
+                    android:id="@+id/editTextElbow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:hint="enter elbow info"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/images_container_elbow"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="9"
+                        android:background="@drawable/border"
+                        android:padding="5dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/add_image_elbow"
+
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/add_image"
+
+                        />
+                </LinearLayout>
             </LinearLayout>
 
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/button_style"
+                android:fontFamily="monospace"
+                android:text="save"
+                android:textAllCaps="false"
+                android:textColor="@color/white_color"
+                android:textSize="20sp" /><!-- ***********************************  -->
 
         </LinearLayout>
-        <!-- ***********************************  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
+    </ScrollView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Shoulder Info" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="292dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/editTextShoulder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:hint="enter shoulder info"
-                tools:visibility="visible" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_shoulder"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/add_image_shoulder"
-
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/add_image"
-
-                    />
-            </LinearLayout>
-
-
-        </LinearLayout><!-- ***********************************  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Spine Info" />
-
-            <EditText
-                android:id="@+id/editTextSpine"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:hint="enter spine info"
-                tools:visibility="visible" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_spine"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/add_image_spine"
-
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/add_image"
-
-                    />
-            </LinearLayout>
-        </LinearLayout><!-- ***********************************  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Pelvis Info" />
-
-            <EditText
-                android:id="@+id/editTextPelvis"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:hint="enter Pelvis info"
-                tools:visibility="visible" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_pelvis"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/add_image_pelvis"
-
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/add_image"
-
-                    />
-            </LinearLayout>
-        </LinearLayout><!-- ***********************************  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="foot Info" />
-
-            <EditText
-                android:id="@+id/editTextFoot"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:hint="enter foot info"
-                tools:visibility="visible" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_foot"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/add_image_foot"
-
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/add_image"
-
-                    />
-            </LinearLayout>
-        </LinearLayout>
-        <!-- ***********************************  -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="2dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="Elbow Info" />
-
-            <EditText
-                android:id="@+id/editTextElbow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:hint="enter elbow info"
-                tools:visibility="visible" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/images_container_elbow"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="9"
-                    android:background="@drawable/border"
-                    android:padding="5dp"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/add_image_elbow"
-
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/add_image"
-
-                    />
-            </LinearLayout>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:background="@drawable/button_style"
-            android:fontFamily="monospace"
-            android:text="save"
-            android:textAllCaps="false"
-            android:textColor="@color/white_color"
-            android:textSize="20sp" /><!-- ***********************************  -->
-
-    </LinearLayout>
-</ScrollView>
+    <TextView
+        android:id="@+id/textView_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:text="pleas wait until upload images"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

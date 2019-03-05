@@ -10,19 +10,19 @@ public class Model_Patient {
     }
 
     public Model_Patient(String name, String id, String age, String occupation, String weight, String info, int Privateid, String last_Update) {
-        this.Name = name;
-        this.Id = id;
-        this.Age = age;
-        this.Occupation = occupation;
-        this.Weight = weight;
-        this.Info = info;
-        this.Private_id = Privateid;
-        this.lastUpdate = last_Update;
+        Name = name;
+        Id = id;
+        Age = age;
+        Occupation = occupation;
+        Weight = weight;
+        Info = info;
+        Private_id = Privateid;
+        lastUpdate = last_Update;
 
     }
 
     public void setName(String name) {
-        this.Name = name;
+        Name = name;
     }
 
     public void setId(String id) {
@@ -34,7 +34,7 @@ public class Model_Patient {
     }
 
     public void setOccupation(String occupation) {
-        this.Occupation = occupation;
+        Occupation = occupation;
     }
 
     public void setWeight(String weight) {
@@ -46,7 +46,7 @@ public class Model_Patient {
     }
 
     public void setLastUpdate(String lastUpdate) {
-        this.lastUpdate = lastUpdate;
+        Model_Patient.lastUpdate = lastUpdate;
     }
 
     public void setPrivate_id(int private_id) {

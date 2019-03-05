@@ -20,15 +20,15 @@ public class Surgery implements Serializable {
 
     public Surgery(String title, String address, String time) {
 
-        this.title = title;
-        this.address = address;
-        this.time = time;
-        this.images = images;
+        Surgery.title = title;
+        Surgery.address = address;
+        Surgery.time = time;
+        images = images;
 
     }
 
     public void setImages(List<String> images) {
-        this.images = images;
+        Surgery.images = images;
     }
 
     public String getTitle() {
@@ -36,15 +36,15 @@ public class Surgery implements Serializable {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        Surgery.title = title;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        Surgery.address = address;
     }
 
     public void setTime(String time) {
-        this.time = time;
+        Surgery.time = time;
     }
 
     public String getAddress() {

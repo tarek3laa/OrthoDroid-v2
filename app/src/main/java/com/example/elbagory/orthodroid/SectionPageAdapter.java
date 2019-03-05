@@ -1,13 +1,14 @@
 package com.example.elbagory.orthodroid;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class SectionPageAdapter extends FragmentStatePagerAdapter {
     private List<Pair<Fragment, String>> fragments = new ArrayList<>();

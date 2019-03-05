@@ -23,43 +23,43 @@ public class Model_Examination {
     private static List<String> elbowImages;
 
     public Model_Examination(String etTrauma, String etKnee, String etShoulder, String etSpine, String etPelvis, String etFoot, String etElbow, int private_id) {
-        this.etTrauma = etTrauma;
-        this.etKnee = etKnee;
-        this.etShoulder = etShoulder;
-        this.etSpine = etSpine;
-        this.etPelvis = etPelvis;
-        this.etFoot = etFoot;
-        this.etElbow = etElbow;
+        Model_Examination.etTrauma = etTrauma;
+        Model_Examination.etKnee = etKnee;
+        Model_Examination.etShoulder = etShoulder;
+        Model_Examination.etSpine = etSpine;
+        Model_Examination.etPelvis = etPelvis;
+        Model_Examination.etFoot = etFoot;
+        Model_Examination.etElbow = etElbow;
         this.Private_id = private_id;
 
     }
 
     public void setEtTrauma(String etTrauma) {
-        this.etTrauma = etTrauma;
+        Model_Examination.etTrauma = etTrauma;
     }
 
     public void setEtKnee(String etKnee) {
-        this.etKnee = etKnee;
+        Model_Examination.etKnee = etKnee;
     }
 
     public void setEtShoulder(String etShoulder) {
-        this.etShoulder = etShoulder;
+        Model_Examination.etShoulder = etShoulder;
     }
 
     public void setEtSpine(String etSpine) {
-        this.etSpine = etSpine;
+        Model_Examination.etSpine = etSpine;
     }
 
     public void setEtPelvis(String etPelvis) {
-        this.etPelvis = etPelvis;
+        Model_Examination.etPelvis = etPelvis;
     }
 
     public void setEtFoot(String etFoot) {
-        this.etFoot = etFoot;
+        Model_Examination.etFoot = etFoot;
     }
 
     public void setEtElbow(String etElbow) {
-        this.etElbow = etElbow;
+        Model_Examination.etElbow = etElbow;
     }
 
     public void setPrivate_id(int private_id) {
@@ -67,7 +67,7 @@ public class Model_Examination {
     }
 
     public void setTraumaImages(List<String> traumaImages) {
-        this.traumaImages = traumaImages;
+        Model_Examination.traumaImages = traumaImages;
     }
 
     public List<String> getKneeImages() {
@@ -75,7 +75,7 @@ public class Model_Examination {
     }
 
     public void setKneeImages(List<String> kneeImages) {
-        this.kneeImages = kneeImages;
+        Model_Examination.kneeImages = kneeImages;
     }
 
     public List<String> getShoulderImages() {
@@ -83,7 +83,7 @@ public class Model_Examination {
     }
 
     public void setShoulderImages(List<String> shoulderImages) {
-        this.shoulderImages = shoulderImages;
+        Model_Examination.shoulderImages = shoulderImages;
     }
 
     public List<String> getSpineImages() {
@@ -91,7 +91,7 @@ public class Model_Examination {
     }
 
     public void setSpineImages(List<String> spineImages) {
-        this.spineImages = spineImages;
+        Model_Examination.spineImages = spineImages;
     }
 
     public List<String> getPelvisImages() {
@@ -99,7 +99,7 @@ public class Model_Examination {
     }
 
     public void setPelvisImages(List<String> pelvisImages) {
-        this.pelvisImages = pelvisImages;
+        Model_Examination.pelvisImages = pelvisImages;
     }
 
     public List<String> getFootImages() {
@@ -107,7 +107,7 @@ public class Model_Examination {
     }
 
     public void setFootImages(List<String> footImages) {
-        this.footImages = footImages;
+        Model_Examination.footImages = footImages;
     }
 
     public List<String> getElbowImages() {
@@ -115,7 +115,7 @@ public class Model_Examination {
     }
 
     public void setElbowImages(List<String> elbowImages) {
-        this.elbowImages = elbowImages;
+        Model_Examination.elbowImages = elbowImages;
     }
 
     public List<String> getTraumaImages() {

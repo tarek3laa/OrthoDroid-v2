@@ -1,16 +1,13 @@
 package com.example.elbagory.orthodroid.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.elbagory.orthodroid.ImageActivity;
 import com.github.chrisbanes.photoview.PhotoView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -40,7 +37,7 @@ public class ImageAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         PhotoView imageView = new PhotoView(context);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
         Glide.with(context).load(images.get(position)).into(imageView);
 
 

@@ -11,7 +11,6 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
-import static com.example.elbagory.orthodroid.HomeActivity.PRIVATE_ID;
 import static com.example.elbagory.orthodroid.fragments.SurgeryFragment.PATIENT_ID;
 
 /**

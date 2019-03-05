@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elbagory.orthodroid.Models.Model_Investigation;
@@ -16,8 +18,10 @@ import com.example.elbagory.orthodroid.R;
 import com.example.elbagory.orthodroid.UpdatePatientActivity;
 import com.example.elbagory.orthodroid.Utils;
 import com.example.elbagory.orthodroid.adapters.ListImageAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -44,7 +48,8 @@ public class InvestigationFragment extends Fragment {
     EditText etChemistry, etCS, etCytology, etXray, etScanogram, etCT, etMRI, etDEXA, etBoneScan;
 
     int Primary_key = 0;
-
+    private int progress = 0;
+    private int sizeOfLists = 0;
 
     private ImageView ivChemistry, ivCS, ivCytology, ivXray, ivScanogram, ivCT, ivMRI, ivDexa, ivBone;
     private RecyclerView rvChemistry, rvCS, rvCytology, rvXray, rvScanogram, rvCT, rvMRI, rvDexa, rvBone;
@@ -52,6 +57,8 @@ public class InvestigationFragment extends Fragment {
     Utils utils = new Utils();
     List<String>[] lists = new ArrayList[9];
     private static Model_Investigation model_investigation;
+    private ProgressBar progressBar;
+    private TextView textViewProgress;
 
     @Nullable
     @Override
@@ -79,7 +86,8 @@ public class InvestigationFragment extends Fragment {
         rvDexa = view.findViewById(R.id.images_container_DEXA);
         rvBone = view.findViewById(R.id.images_container_bone);
 
-
+        progressBar = view.findViewById(R.id.progressBar);
+        textViewProgress = view.findViewById(R.id.textView_progress);
         rvChemistry.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         rvCS.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         rvCytology.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -374,6 +382,9 @@ public class InvestigationFragment extends Fragment {
             return;
         } else {
             System.out.println("NOT NULL");
+            sizeOfLists += imageUris.size();
+            progressBar.setVisibility(View.VISIBLE);
+            textViewProgress.setVisibility(View.VISIBLE);
         }
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -493,6 +504,22 @@ public class InvestigationFragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     System.out.println("fail  " + e);
+                }
+            }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    ++progress;
+                    if (progress < sizeOfLists) {
+
+                        textViewProgress.setText(progress + " / " + sizeOfLists + " images uploaded\n          pleas wait");
+                    } else if (progress == sizeOfLists) {
+                        textViewProgress.setText("uploaded Successfully");
+
+                        textViewProgress.setVisibility(View.INVISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        progress = 0;
+                        sizeOfLists = 0;
+                    }
                 }
             });
 
