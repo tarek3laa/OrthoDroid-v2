@@ -1,4 +1,4 @@
-package com.example.elbagory.orthodroid;
+package com.example.elbagory.orthodroid.receivers;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -8,6 +8,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+
+import com.example.elbagory.orthodroid.R;
+import com.example.elbagory.orthodroid.activities.HomeActivity;
+import com.example.elbagory.orthodroid.activities.UpdatePatientActivity;
 
 import androidx.core.app.NotificationCompat;
 
@@ -19,7 +23,6 @@ import static com.example.elbagory.orthodroid.fragments.SurgeryFragment.PATIENT_
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        System.out.println("recive");
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

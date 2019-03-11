@@ -7,12 +7,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.elbagory.orthodroid.GetTimeFromInternet;
 import com.example.elbagory.orthodroid.Models.Model_Patient;
+import com.example.elbagory.orthodroid.Models.RecyclerViewRow_Model;
 import com.example.elbagory.orthodroid.R;
-import com.example.elbagory.orthodroid.UpdatePatientActivity;
+import com.example.elbagory.orthodroid.activities.UpdatePatientActivity;
+import com.example.elbagory.orthodroid.utils.GetTimeFromInternet;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import androidx.annotation.NonNull;
@@ -25,7 +31,7 @@ import androidx.fragment.app.Fragment;
  */
 public class PatientFragment extends Fragment {
     static EditText etName, etId, etAge, etOccupation, etWeight, etInfo;
-    public static final String ALL_PATIENT = "all_patient";
+    public static final String ALL_PATIENT = "all_patient_test";
     public static final String PRIMARY_KEY = "Primary_key";
     // this Primary_key help us to get data for this user
     Integer Primary_key = 0;
@@ -67,7 +73,15 @@ public class PatientFragment extends Fragment {
         //save to DB
 
         Button button = view.findViewById(R.id.button);
+        Button deleteBtn = view.findViewById(R.id.delete);
 
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteAllInfo();
+                getActivity().finish();
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -83,19 +97,7 @@ public class PatientFragment extends Fragment {
 
                 } else {
 
-                    Model_Patient model_patient = new Model_Patient(etName.getText().toString(),
-                            etId.getText().toString(),
-                            etAge.getText().toString(),
-                            etOccupation.getText().toString(),
-                            etWeight.getText().toString(),
-                            etInfo.getText().toString(),
-                            Primary_key,
-                            new GetTimeFromInternet().getTime()
-                    );
-                    UpdatePatientActivity.allInfo.setPatient(model_patient);
-                    // create new patient
-                    databaseReference.child(ALL_PATIENT).child(String.valueOf(Primary_key)).setValue(UpdatePatientActivity.allInfo);
-
+                    updatePatientInfo();
                     TastyToast.makeText(getActivity(), "Saved", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS).show();
 
                 }
@@ -105,6 +107,69 @@ public class PatientFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void deleteAllInfo() {
+        UpdatePatientActivity.allInfo = null;
+        databaseReference.child(ALL_PATIENT).child(String.valueOf(Primary_key)).setValue(UpdatePatientActivity.allInfo);
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference storageReference = firebaseStorage.getReference();
+        storageReference.child(String.valueOf(Primary_key)).delete();
+        updateRecyclerInfo(Primary_key, true);
+    }
+
+    private void updatePatientInfo() {
+        Model_Patient model_patient
+                = new Model_Patient(etName.getText().toString(),
+                etId.getText().toString(),
+                etAge.getText().toString(),
+                etOccupation.getText().toString(),
+                etWeight.getText().toString(),
+                etInfo.getText().toString(),
+                Primary_key,
+                new GetTimeFromInternet().getTime()
+        );
+
+        // for test
+        // List<Pair<String,Pair<String,String>>> list =new ArrayList<>();
+        // list.add(new Pair("first",new Pair<>("sce f","sec s")));
+        // list.add(new Pair("f",new Pair<>("s f","s s")));
+        // model_patient.setPairs(list);
+        UpdatePatientActivity.allInfo.setPatient(model_patient);
+
+        databaseReference.child(ALL_PATIENT).child(String.valueOf(Primary_key)).setValue(UpdatePatientActivity.allInfo);
+
+
+        updateRecyclerInfo(Primary_key, false);
+    }
+
+    private void updateRecyclerInfo(final Integer id, boolean delete) {
+        RecyclerViewRow_Model recyclerView = null;
+        if (!delete)
+            recyclerView = new RecyclerViewRow_Model(etName.getText().toString(), etId.getText().toString(), new GetTimeFromInternet().getTime(), Primary_key);
+        final RecyclerViewRow_Model finalRecyclerView = recyclerView;
+        databaseReference.child("RecyclerViewRow").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                    RecyclerViewRow_Model row = dataSnapshot1.getValue(RecyclerViewRow_Model.class);
+                    if (row.getPrivate_id() == id) {
+                        dataSnapshot1.getRef().setValue(finalRecyclerView);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 

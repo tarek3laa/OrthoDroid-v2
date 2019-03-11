@@ -1,4 +1,4 @@
-package com.example.elbagory.orthodroid;
+package com.example.elbagory.orthodroid.adapters;
 
 import android.util.Pair;
 

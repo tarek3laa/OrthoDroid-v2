@@ -1,10 +1,8 @@
-package com.example.elbagory.orthodroid;
+package com.example.elbagory.orthodroid.activities;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.example.elbagory.orthodroid.R;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,12 +33,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // to know if user log in before or not
-        if (new CheckLogin(getApplicationContext()).readLoginStatus()) {
-            startActivity(new Intent(this, HomeActivity.class));
-            finish();
-        }
-
 
         // init view
         metUserName = findViewById(R.id.tv_username);
@@ -53,17 +46,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
             startActivity(new Intent(this, HomeActivity.class));
+            finish();
         }
         mbtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mcbRememberMe.isChecked()) putBoolean(LOGIN_KEY, true);
                 goToMainActivity();
+                finish();
             }
         });
 
     }
-
 
 
     /**
@@ -74,8 +68,6 @@ public class LoginActivity extends AppCompatActivity {
      */
 
 
-
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void putBoolean(String s, boolean b) {
         sharedPreferences.edit().putBoolean(s, b).apply();
     }
@@ -92,11 +84,9 @@ public class LoginActivity extends AppCompatActivity {
 
             // check if username and password are correct
             if (username.equals("admin") && password.equals("admin")) {
-                new CheckLogin(getApplicationContext()).writeLoginStatus(true);
                 makeTastyToast("authentication Succeeded", TastyToast.SUCCESS);
                 startActivity(new Intent(this, HomeActivity.class));
                 finish();
-
             } else
                 makeTastyToast("username or password incorrect", TastyToast.ERROR);
 

@@ -7,6 +7,11 @@
     <color name="dark_blue">#804455aa</color>
     <color name="dark_blue_light">#AA4455aa</color>
     <color name="white_color">#fff</color>
+    <color name="ic_launcher_background">#E9E9E9</color>
+    <color name="green_trans">#9055ff66</color>
+    <color name="green">#9944ff55</color>
+    <color name="red_trans">#90ff5566</color>
+    <color name="red">#99ff4455</color>
 </resources>
 
 

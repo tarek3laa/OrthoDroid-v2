@@ -1,4 +1,4 @@
-package com.example.elbagory.orthodroid;
+package com.example.elbagory.orthodroid.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.elbagory.orthodroid.Models.RecyclerViewRow_Model;
+import com.example.elbagory.orthodroid.R;
+import com.example.elbagory.orthodroid.adapters.OnRecyclerViewItemClickListener;
 import com.example.elbagory.orthodroid.adapters.RecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -29,34 +31,24 @@ import androidx.recyclerview.widget.RecyclerView;
 public class HomeActivity extends AppCompatActivity implements OnRecyclerViewItemClickListener {
 
     public static final String PRIVATE_ID = "private id";
-    List<RecyclerViewRow_Model> recyclerViewRowModels_lists = new ArrayList<>();
+    private List<RecyclerViewRow_Model> recyclerViewRowModels_lists = new ArrayList<>();
     //ProgressDialog
     ProgressDialog pd;
-
     FloatingActionButton floatingActionButton; // add patient button
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private final DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private RecyclerView recyclerView;
+    private RecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        //fire base
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference = firebaseDatabase.getReference();
+        databaseReference.keepSynced(true);
 
         pd = new ProgressDialog(this);
 
-        // init view
         floatingActionButton = findViewById(R.id.fab_add_patient);
-
-
-        /**
-         * list item ===> {@link R.layout.list_item }
-         *
-         * name ===> {@link R.id.textViewName}
-         * id ===>{@link R.id.textViewID}
-         * last update ===> {@link R.id.textViewLastUpdate}
-         */
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,18 +59,26 @@ public class HomeActivity extends AppCompatActivity implements OnRecyclerViewIte
 
 
         // RecyclerView implement
-        final RecyclerView recyclerView = findViewById(R.id.RecyclerViewPatients);
+        recyclerView = findViewById(R.id.RecyclerViewPatients);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
         // RecyclerView adapter
-        final RecyclerAdapter adapter = new RecyclerAdapter(recyclerViewRowModels_lists, this);
-
-
+        adapter = new RecyclerAdapter(recyclerViewRowModels_lists, this);
         pd.setMessage("loading");
         pd.show();
-        databaseReference.child("RecyclerViewRow").addValueEventListener(new ValueEventListener() {
 
+        loadData();
+        adapter.setOnRecyclerViewItemClickListener(this);
+
+
+    }
+
+    /**
+     * load patient info from database
+     */
+    private void loadData() {
+        databaseReference.child("RecyclerViewRow").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -89,8 +89,6 @@ public class HomeActivity extends AppCompatActivity implements OnRecyclerViewIte
 
                     RecyclerViewRow_Model row = dataSnapshot1.getValue(RecyclerViewRow_Model.class);
                     recyclerViewRowModels_lists.add(row);
-
-
                     recyclerView.setAdapter(adapter);
                 }
                 adapter.notifyDataSetChanged();
@@ -105,11 +103,6 @@ public class HomeActivity extends AppCompatActivity implements OnRecyclerViewIte
 
             }
         });
-
-
-        adapter.setOnRecyclerViewItemClickListener(this);
-
-
     }
 
     //send position of itme click which is the id

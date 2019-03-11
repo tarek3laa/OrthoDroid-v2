@@ -1,4 +1,4 @@
-package com.example.elbagory.orthodroid;
+package com.example.elbagory.orthodroid.utils;
 
 import android.os.AsyncTask;
 
@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
@@ -18,19 +19,21 @@ import java.util.regex.Pattern;
 
 public class GetTimeFromInternet {
 
-    public GetTimeFromInternet() {
-    }
 
+    /**
+     *
+     * @return current time
+     */
     public  String getTime() {
 
         String finalDate = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
         SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.ENGLISH);//"2019-02-02T08:15+00:00"
 
-        DwnloadTask task =new DwnloadTask();
-        String result=null;
+        DwnloadTask task = new DwnloadTask();
+        String result = null;
         try {
-            result= task.execute("http://www.worldclockapi.com/api/json/gmt/now").get();
+            result = task.execute("http://www.worldclockapi.com/api/json/gmt/now").get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -43,7 +46,7 @@ public class GetTimeFromInternet {
         while (matcher1.find()) {
             full1 = matcher1.group(1);
         }
-        if(full1 != null) {
+        if (full1 != null) {
             full1 = full1.replace("\"", "");
             Date date = null;
             try {
@@ -53,31 +56,34 @@ public class GetTimeFromInternet {
             }
             if (date != null) {
                 finalDate = sdf1.format(date);
+            } else {
+                finalDate = sdf1.format(Calendar.getInstance().getTime());
             }
+        }
+        if (finalDate == null) {
+            finalDate = sdf1.format(Calendar.getInstance().getTime());
+
         }
         return finalDate;
     }
 
-
-
-    public static class DwnloadTask extends AsyncTask<String,Void,String> {
+    private static class DwnloadTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strings) {
-            String result=null;
+            String result = null;
             URL url;
             HttpURLConnection urlconnection;
             try {
-                url=new URL(strings[0]);
-                urlconnection=(HttpURLConnection) url.openConnection();
+                url = new URL(strings[0]);
+                urlconnection = (HttpURLConnection) url.openConnection();
 
                 InputStream in = urlconnection.getInputStream();
-                InputStreamReader reader=new InputStreamReader(in);
-                int data=reader.read();
-                while (data!=-1)
-                {
-                    char curd=(char)data;
-                    result+=curd;
-                    data=reader.read();
+                InputStreamReader reader = new InputStreamReader(in);
+                int data = reader.read();
+                while (data != -1) {
+                    char curd = (char) data;
+                    result += curd;
+                    data = reader.read();
 
                 }
                 return result;
@@ -91,7 +97,6 @@ public class GetTimeFromInternet {
 
         }
     }
-
 
 
 }

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.elbagory.orthodroid.ImageActivity;
+import com.example.elbagory.orthodroid.activities.ImageActivity;
 import com.example.elbagory.orthodroid.R;
 
 import java.util.ArrayList;

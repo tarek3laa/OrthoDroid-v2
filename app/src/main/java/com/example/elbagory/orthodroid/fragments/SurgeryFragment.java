@@ -18,11 +18,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.elbagory.orthodroid.AlarmReceiver;
+import com.example.elbagory.orthodroid.receivers.AlarmReceiver;
 import com.example.elbagory.orthodroid.Models.Surgery;
 import com.example.elbagory.orthodroid.R;
-import com.example.elbagory.orthodroid.UpdatePatientActivity;
-import com.example.elbagory.orthodroid.Utils;
+import com.example.elbagory.orthodroid.activities.UpdatePatientActivity;
+import com.example.elbagory.orthodroid.utils.Utils;
 import com.example.elbagory.orthodroid.adapters.ListImageAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

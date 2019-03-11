@@ -1,4 +1,4 @@
-package com.example.elbagory.orthodroid;
+package com.example.elbagory.orthodroid.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.elbagory.orthodroid.Models.AllInfo;
+import com.example.elbagory.orthodroid.R;
+import com.example.elbagory.orthodroid.adapters.SectionPageAdapter;
 import com.example.elbagory.orthodroid.fragments.ExaminationFragment;
 import com.example.elbagory.orthodroid.fragments.HistoryFragment;
 import com.example.elbagory.orthodroid.fragments.InvestigationFragment;
@@ -30,13 +32,14 @@ public class UpdatePatientActivity extends AppCompatActivity {
     public static int patientID = -1;
     ViewPager viewPager;
     ProgressDialog pd;
-    private boolean su = false;
+    private boolean isFirstTime = true;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private final DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_patient);
-        System.out.println("hello ........");
         try {
             pd = new ProgressDialog(this);
             pd.setMessage("loading");
@@ -44,36 +47,39 @@ public class UpdatePatientActivity extends AppCompatActivity {
             Intent intent = getIntent();
             patientID = intent.getIntExtra(HomeActivity.PRIVATE_ID, -1);
 
-            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            final DatabaseReference databaseReference = firebaseDatabase.getReference();
-            System.out.println(patientID);
-            databaseReference.child(AddPatientActivity.ALL_PATIENT).child(String.valueOf(patientID)).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    System.out.println("HI");
-                    UpdatePatientActivity.allInfo = dataSnapshot.getValue(AllInfo.class);
 
-                    if (!su) {
-                        su = true;
-                        viewPager = findViewById(R.id.container);
-                        setSectionPageAdapter(viewPager);
-                        TabLayout tabLayout = findViewById(R.id.tabs);
-                        tabLayout.setupWithViewPager(viewPager);
-                        PatientFragment.update();
-                    }
-                    pd.dismiss();
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
+            databaseReference.keepSynced(true);
+            loadAllData();
 
 
         } catch (Exception e) {
             Log.e(TAG, "onCreate: ", e);
         }
+    }
+
+    private void loadAllData() {
+        databaseReference.child(AddPatientActivity.ALL_PATIENT).child(String.valueOf(patientID)).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                UpdatePatientActivity.allInfo = dataSnapshot.getValue(AllInfo.class);
+
+                if (isFirstTime) {
+                    isFirstTime = false;
+                    viewPager = findViewById(R.id.container);
+                    setSectionPageAdapter(viewPager);
+                    TabLayout tabLayout = findViewById(R.id.tabs);
+                    tabLayout.setupWithViewPager(viewPager);
+                    PatientFragment.update();
+                }
+                pd.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     /**

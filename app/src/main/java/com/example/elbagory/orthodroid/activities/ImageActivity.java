@@ -1,8 +1,9 @@
-package com.example.elbagory.orthodroid;
+package com.example.elbagory.orthodroid.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.elbagory.orthodroid.R;
 import com.example.elbagory.orthodroid.adapters.ImageAdapter;
 
 import java.util.ArrayList;
@@ -26,7 +27,6 @@ public class ImageActivity extends AppCompatActivity {
         ArrayList<String> list = intent.getStringArrayListExtra(IMAGE_URL);
         ImageAdapter imageAdapter = new ImageAdapter(this, list);
 
-        //Glide.with(this).load().into(photoView);
         photoView.setAdapter(imageAdapter);
 
     }

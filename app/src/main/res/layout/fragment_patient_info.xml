@@ -177,9 +177,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
-            android:background="@drawable/button_style"
+            android:background="@drawable/button_style_save"
             android:fontFamily="monospace"
             android:text="save"
+            android:textAllCaps="false"
+            android:textColor="@color/white_color"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:background="@drawable/button_style_delete"
+            android:fontFamily="monospace"
+            android:text="delete"
             android:textAllCaps="false"
             android:textColor="@color/white_color"
             android:textSize="20sp" />

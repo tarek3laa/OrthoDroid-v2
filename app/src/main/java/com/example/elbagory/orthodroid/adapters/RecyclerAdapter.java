@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.elbagory.orthodroid.Models.RecyclerViewRow_Model;
-import com.example.elbagory.orthodroid.OnRecyclerViewItemClickListener;
 import com.example.elbagory.orthodroid.R;
 
 import java.util.List;

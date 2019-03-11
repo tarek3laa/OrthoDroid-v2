@@ -1,9 +1,16 @@
 package com.example.elbagory.orthodroid.Models;
 
+
+
+import com.example.elbagory.orthodroid.utils.Pair;
+import java.util.List;
+
 public class Model_Patient {
 
     private static String Name, Id, Age, Occupation, Weight, Info, lastUpdate;
     private static int Private_id;
+    private static List<Pair<String,Pair<String,String>>> pairs;
+
 
     // for fire base
     public Model_Patient() {
@@ -19,6 +26,14 @@ public class Model_Patient {
         Private_id = Privateid;
         lastUpdate = last_Update;
 
+    }
+
+    public List<Pair<String, Pair<String, String>>> getPairs() {
+        return this.pairs;
+    }
+
+    public void setPairs(List<Pair<String, Pair<String, String>>> pairs) {
+        this.pairs = pairs;
     }
 
     public void setName(String name) {

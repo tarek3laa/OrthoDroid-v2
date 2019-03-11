@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import com.example.elbagory.orthodroid.Models.Model_Investigation;
 import com.example.elbagory.orthodroid.R;
-import com.example.elbagory.orthodroid.UpdatePatientActivity;
-import com.example.elbagory.orthodroid.Utils;
+import com.example.elbagory.orthodroid.activities.UpdatePatientActivity;
+import com.example.elbagory.orthodroid.utils.Utils;
 import com.example.elbagory.orthodroid.adapters.ListImageAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -39,7 +39,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.example.elbagory.orthodroid.UpdatePatientActivity.allInfo;
+import static com.example.elbagory.orthodroid.activities.UpdatePatientActivity.allInfo;
 
 /**
  * fragment contains Investigation Info

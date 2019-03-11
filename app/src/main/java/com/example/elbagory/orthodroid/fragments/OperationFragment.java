@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.elbagory.orthodroid.Models.Model_Operation;
 import com.example.elbagory.orthodroid.R;
-import com.example.elbagory.orthodroid.UpdatePatientActivity;
+import com.example.elbagory.orthodroid.activities.UpdatePatientActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.sdsmdg.tastytoast.TastyToast;
@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import static com.example.elbagory.orthodroid.UpdatePatientActivity.allInfo;
+import static com.example.elbagory.orthodroid.activities.UpdatePatientActivity.allInfo;
 
 /**
  * fragment contains Operation info
