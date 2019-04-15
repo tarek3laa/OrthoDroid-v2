@@ -1,112 +1,153 @@
 package com.example.elbagory.orthodroid.Models;
 
-import java.util.List;
+import androidx.annotation.NonNull;
 
 public class Model_History {
 
-    private static String PChronic, PGastritis, PSmoking, PPregnancy, PLactation;
-    private static int Private_id;
-    private static List<String> imagesSmoking, imagesChronic, imagesGastritis, imagesPregnancy, imagesLactation;
+
+    private String PChronic, PChronicOther, PGastritis, PGastritisOther, PSmoking, PSmokingOther, PPregnancy, PPregnancyOther, PLactation, PLactationOther;
+    private boolean chronic, gastritis, smoking, pregnancy, lactation;
 
     public Model_History() {
     }
 
-    public Model_History(String PChronic, String etGastritis, String etSmoking, String etPregnancy, String etLactation, int Privateid) {
-        Model_History.PChronic = PChronic;
-        PGastritis = etGastritis;
-        PSmoking = etSmoking;
-        PPregnancy = etPregnancy;
-        PLactation = etLactation;
-        Private_id = Privateid;
-
+    public Model_History(String PChronic, String PChronicOther, String PGastritis, String PGastritisOther, String PSmoking, String PSmokingOther, String PPregnancy, String PPregnancyOther, String PLactation, String PLactationOther) {
+        this.PChronic = PChronic;
+        this.PChronicOther = PChronicOther;
+        this.PGastritis = PGastritis;
+        this.PGastritisOther = PGastritisOther;
+        this.PSmoking = PSmoking;
+        this.PSmokingOther = PSmokingOther;
+        this.PPregnancy = PPregnancy;
+        this.PPregnancyOther = PPregnancyOther;
+        this.PLactation = PLactation;
+        this.PLactationOther = PLactationOther;
     }
-
-    public void setPChronic(String PChronic) {
-        Model_History.PChronic = PChronic;
-    }
-
-    public void setPGastritis(String PGastritis) {
-        Model_History.PGastritis = PGastritis;
-    }
-
-    public void setPSmoking(String PSmoking) {
-        Model_History.PSmoking = PSmoking;
-    }
-
-    public void setPPregnancy(String PPregnancy) {
-        Model_History.PPregnancy = PPregnancy;
-    }
-
-    public void setPrivate_id(int private_id) {
-        Private_id = private_id;
-    }
-
-    public List<String> getImagesSmoking() {
-        return imagesSmoking;
-    }
-
-    public void setPLactation(String PLactation) {
-        Model_History.PLactation = PLactation;
-    }
-
-    public List<String> getImagesChronic() {
-        return imagesChronic;
-    }
-
-    public void setImagesSmoking(List<String> imagesSmoking) {
-        Model_History.imagesSmoking = imagesSmoking;
-    }
-
-    public List<String> getImagesGastritis() {
-        return imagesGastritis;
-    }
-
-    public void setImagesChronic(List<String> imagesChronic) {
-        Model_History.imagesChronic = imagesChronic;
-    }
-
-    public List<String> getImagesPregnancy() {
-        return imagesPregnancy;
-    }
-
-    public void setImagesGastritis(List<String> imagesGastritis) {
-        Model_History.imagesGastritis = imagesGastritis;
-    }
-
-    public List<String> getImagesLactation() {
-        return imagesLactation;
-    }
-
-    public void setImagesPregnancy(List<String> imagesPregnancy) {
-        Model_History.imagesPregnancy = imagesPregnancy;
-    }
-
-    public void setImagesLactation(List<String> imagesLactation) {
-        Model_History.imagesLactation = imagesLactation;
-    }
-
 
     public String getPChronic() {
         return PChronic;
+    }
+
+    public void setPChronic(String PChronic) {
+        this.PChronic = PChronic;
+    }
+
+    public String getPChronicOther() {
+        return PChronicOther;
+    }
+
+    public void setPChronicOther(String PChronicOther) {
+        this.PChronicOther = PChronicOther;
     }
 
     public String getPGastritis() {
         return PGastritis;
     }
 
+    public void setPGastritis(String PGastritis) {
+        this.PGastritis = PGastritis;
+    }
+
+    public String getPGastritisOther() {
+        return PGastritisOther;
+    }
+
+    public void setPGastritisOther(String PGastritisOther) {
+        this.PGastritisOther = PGastritisOther;
+    }
+
     public String getPSmoking() {
         return PSmoking;
+    }
+
+    public void setPSmoking(String PSmoking) {
+        this.PSmoking = PSmoking;
+    }
+
+    public String getPSmokingOther() {
+        return PSmokingOther;
+    }
+
+    public void setPSmokingOther(String PSmokingOther) {
+        this.PSmokingOther = PSmokingOther;
     }
 
     public String getPPregnancy() {
         return PPregnancy;
     }
 
+    public void setPPregnancy(String PPregnancy) {
+        this.PPregnancy = PPregnancy;
+    }
+
+    public String getPPregnancyOther() {
+        return PPregnancyOther;
+    }
+
+    public void setPPregnancyOther(String PPregnancyOther) {
+        this.PPregnancyOther = PPregnancyOther;
+    }
+
     public String getPLactation() {
         return PLactation;
     }
 
-    public int getPrivate_id() {
-        return Private_id;
+    public void setPLactation(String PLactation) {
+        this.PLactation = PLactation;
+    }
+
+    public String getPLactationOther() {
+        return PLactationOther;
+    }
+
+    public void setPLactationOther(String PLactationOther) {
+        this.PLactationOther = PLactationOther;
+    }
+
+    public boolean isChronic() {
+        return chronic;
+    }
+
+    public void setChronic(boolean chronic) {
+        this.chronic = chronic;
+    }
+
+    public boolean isGastritis() {
+        return gastritis;
+    }
+
+    public void setGastritis(boolean gastritis) {
+        this.gastritis = gastritis;
+    }
+
+    public boolean isSmoking() {
+        return smoking;
+    }
+
+    public void setSmoking(boolean smoking) {
+        this.smoking = smoking;
+    }
+
+    public boolean isPregnancy() {
+        return pregnancy;
+    }
+
+    public void setPregnancy(boolean pregnancy) {
+        this.pregnancy = pregnancy;
+    }
+
+    public boolean isLactation() {
+        return lactation;
+    }
+
+    public void setLactation(boolean lactation) {
+        this.lactation = lactation;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return PChronic + " " + PChronicOther + " " + PGastritis + " " + PGastritisOther + " " + PSmoking + " " + PSmokingOther + " " + PPregnancy + " " + PPregnancyOther + " " + PLactation + " " + PLactationOther;
+
     }
 }

@@ -1,43 +1,24 @@
 package com.example.elbagory.orthodroid.fragments;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.example.elbagory.orthodroid.Models.Model_History;
 import com.example.elbagory.orthodroid.R;
 import com.example.elbagory.orthodroid.activities.UpdatePatientActivity;
-import com.example.elbagory.orthodroid.utils.Utils;
-import com.example.elbagory.orthodroid.adapters.ListImageAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.sdsmdg.tastytoast.TastyToast;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -46,24 +27,13 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
  * fragment contains History Info
  */
 public class HistoryFragment extends Fragment {
-    private static final int STORAGE_PERMISSION_CODE = 50;
-    EditText etChronic, etGastritis, etSmoking, etPregnancy, etLactation;
-    private static Model_History model_history;
+    EditText etChronic, etChronicOther, etGastritis, etGastritisOther, etSmoking, etSmokingOther, etPregnancy, etPregnancyOther, etLactation, etLactationOther;
+    private Model_History model_history = new Model_History();
     // this Primary_key help us to get data for this user
-    private int progress = 0;
-    private int sizeOfLists = 0;
     private Integer Primary_key = 0;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private final DatabaseReference databaseReference = firebaseDatabase.getReference();
-
-    private ImageView ivSmoking, ivChronic, ivGastritis, ivPregnancy, ivLactation;
-    private RecyclerView rvSmoking, rvChronic, rvGastritis, rvPregnancy, rvLactation;
-
-    private static final int PICK_IMAGE_SMOKING = 100, PICK_IMAGE_GASTRITIS = 101, PICK_IMAGE_PREGNANCY = 102, PICK_IMAGE_LACTATION = 103, PICK_IMAGE_CHRONIC = 104;
-    private Utils utils = new Utils();
-    List<String>[] lists = new ArrayList[5];
-    private ProgressBar progressBar;
-    private TextView textViewProgress;
+    private CheckBox Chronic, Gastritis, Smoking, Pregnancy, Lactation;
 
     @Nullable
     @Override
@@ -74,75 +44,88 @@ public class HistoryFragment extends Fragment {
             System.out.println("hi");
             //fire base
             etChronic = view.findViewById(R.id.ch);
+            etChronicOther = view.findViewById(R.id.other_ch);
             etGastritis = view.findViewById(R.id.ga);
+            etGastritisOther = view.findViewById(R.id.other_ga);
             etSmoking = view.findViewById(R.id.smoking);
+            etSmokingOther = view.findViewById(R.id.other_smoking);
             etPregnancy = view.findViewById(R.id.pr);
+            etPregnancyOther = view.findViewById(R.id.other_pr);
             etLactation = view.findViewById(R.id.la);
-
-            progressBar = view.findViewById(R.id.progressBar);
-            textViewProgress = view.findViewById(R.id.textView_progress);
-
-            ivSmoking = view.findViewById(R.id.add_image_smoking);
-            ivChronic = view.findViewById(R.id.add_image_chronic);
-            ivGastritis = view.findViewById(R.id.add_image_gastritis);
-            ivPregnancy = view.findViewById(R.id.add_image_pregnancy);
-            ivLactation = view.findViewById(R.id.add_image_lactation);
+            etLactationOther = view.findViewById(R.id.other_la);
 
 
-            rvSmoking = view.findViewById(R.id.images_container_smoking);
-            rvChronic = view.findViewById(R.id.images_container_chronic);
-            rvGastritis = view.findViewById(R.id.images_container_gastritis);
-            rvPregnancy = view.findViewById(R.id.images_container_pregnancy);
-            rvLactation = view.findViewById(R.id.images_container_lactation);
+            Chronic = view.findViewById(R.id.checkbox_ch);
+            Gastritis = view.findViewById(R.id.checkbox_ga);
+            Smoking = view.findViewById(R.id.checkbox_smoking);
+            Pregnancy = view.findViewById(R.id.checkbox_pr);
+            Lactation = view.findViewById(R.id.checkbox_la);
 
 
-            rvSmoking.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-            rvChronic.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-            rvPregnancy.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-            rvGastritis.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-            rvLactation.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-
-
-            ivSmoking.setOnClickListener(new View.OnClickListener() {
+            Chronic.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    rvSmoking.setVisibility(View.VISIBLE);
-                    //utils.
-                    utils.openGallery(HistoryFragment.this, PICK_IMAGE_SMOKING);
-                }
-            });
-            ivChronic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    rvChronic.setVisibility(View.VISIBLE);
-                    utils.openGallery(HistoryFragment.this, PICK_IMAGE_CHRONIC);
+                    if (Chronic.isChecked()) {
+                        etChronic.setVisibility(View.VISIBLE);
+                        etChronicOther.setVisibility(View.VISIBLE);
+                    } else {
+                        etChronic.setVisibility(View.GONE);
+                        etChronicOther.setVisibility(View.GONE);
+                    }
+                    model_history.setChronic(Chronic.isChecked());
 
                 }
             });
-            ivGastritis.setOnClickListener(new View.OnClickListener() {
+            Gastritis.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    rvGastritis.setVisibility(View.VISIBLE);
-
-                    utils.openGallery(HistoryFragment.this, PICK_IMAGE_GASTRITIS);
-
+                    if (Gastritis.isChecked()) {
+                        etGastritis.setVisibility(View.VISIBLE);
+                        etGastritisOther.setVisibility(View.VISIBLE);
+                    } else {
+                        etGastritis.setVisibility(View.GONE);
+                        etGastritisOther.setVisibility(View.GONE);
+                    }
+                    model_history.setGastritis(Gastritis.isChecked());
                 }
             });
-            ivPregnancy.setOnClickListener(new View.OnClickListener() {
+            Smoking.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    rvPregnancy.setVisibility(View.VISIBLE);
-                    utils.openGallery(HistoryFragment.this, PICK_IMAGE_PREGNANCY);
-
+                    if (Smoking.isChecked()) {
+                        etSmoking.setVisibility(View.VISIBLE);
+                        etSmokingOther.setVisibility(View.VISIBLE);
+                    } else {
+                        etSmoking.setVisibility(View.GONE);
+                        etSmokingOther.setVisibility(View.GONE);
+                    }
+                    model_history.setSmoking(Smoking.isChecked());
                 }
             });
-            ivLactation.setOnClickListener(new View.OnClickListener() {
+            Pregnancy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    rvLactation.setVisibility(View.VISIBLE);
-                    utils.openGallery(HistoryFragment.this, PICK_IMAGE_LACTATION);
-
+                    if (Pregnancy.isChecked()) {
+                        etPregnancy.setVisibility(View.VISIBLE);
+                        etPregnancyOther.setVisibility(View.VISIBLE);
+                    } else {
+                        etPregnancy.setVisibility(View.GONE);
+                        etPregnancyOther.setVisibility(View.GONE);
+                    }
+                    //     model_history.setPregnancy(Pregnancy.isChecked());
+                }
+            });
+            Lactation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Lactation.isChecked()) {
+                        etLactationOther.setVisibility(View.VISIBLE);
+                        etLactation.setVisibility(View.VISIBLE);
+                    } else {
+                        etLactationOther.setVisibility(View.GONE);
+                        etLactation.setVisibility(View.GONE);
+                    }
+                    model_history.setLactation(Lactation.isChecked());
                 }
             });
 
@@ -158,83 +141,109 @@ public class HistoryFragment extends Fragment {
                 public void onClick(View v) {
 
 
-                    model_history = new Model_History(etChronic.getText().toString(),
+                    model_history = new Model_History(etChronic.getText().toString(), etChronicOther.getText().toString(),
+                            etGastritis.getText().toString(), etGastritisOther.getText().toString(),
+                            etSmoking.getText().toString(), etSmokingOther.getText().toString(),
+                            etPregnancy.getText().toString(), etPregnancyOther.getText().toString(),
+                            etLactation.getText().toString(), etLactationOther.getText().toString());
+                    model_history.setPSmokingOther("hhhhhh");
+                    model_history.setSmoking(Smoking.isChecked());
 
-                            etGastritis.getText().toString(),
-                            etSmoking.getText().toString(),
-                            etPregnancy.getText().toString(),
-                            etLactation.getText().toString(),
-                            Primary_key);
+                    model_history.setChronic(Chronic.isChecked());
+                    model_history.setGastritis(Gastritis.isChecked());
+                    model_history.setGastritis(Gastritis.isChecked());
+                    model_history.setPregnancy(Pregnancy.isChecked());
+                    model_history.setLactation(Lactation.isChecked());
+
+
                     UpdatePatientActivity.allInfo.setHistory(model_history);
-
+                    System.out.println(model_history);
                     databaseReference.child(PatientFragment.ALL_PATIENT).child(String.valueOf(Primary_key)).setValue(UpdatePatientActivity.allInfo);
 
-
-                    uploadToStorage("smoking", lists[0], PICK_IMAGE_SMOKING);
-                    uploadToStorage("gastritis", lists[1], PICK_IMAGE_GASTRITIS);
-                    uploadToStorage("pregnancy", lists[2], PICK_IMAGE_PREGNANCY);
-                    uploadToStorage("lactation", lists[3], PICK_IMAGE_LACTATION);
-                    uploadToStorage("chronic", lists[4], PICK_IMAGE_CHRONIC);
-
+                    System.out.println("hellllll");
 
                     TastyToast.makeText(getActivity(), "Saved", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS).show();
 
                 }
             });
             try {
-                Model_History history = null;
-                if (UpdatePatientActivity.allInfo != null)
-                    history = UpdatePatientActivity.allInfo.getHistory();
-                else System.out.println("null at all patient ");
+
+
+                if (UpdatePatientActivity.allInfo != null) {
+                    model_history = UpdatePatientActivity.allInfo.getHistory();
+
+
+                } else System.out.println("null at all patient ");
                 //  rvSmoking,rvChronic,  rvGastritis, rvPregnancy, rvLactation;
-                if (history != null) {
-                    if (history.getPSmoking() != null)
-                        etSmoking.setText(history.getPSmoking());
-                    if (history.getPChronic() != null)
-                        etChronic.setText(history.getPChronic());
-                    if (history.getPGastritis() != null)
-                        etGastritis.setText(history.getPGastritis());
-                    if (history.getPPregnancy() != null)
-                        etPregnancy.setText(history.getPPregnancy());
-                    if (history.getPLactation() != null)
-                        etLactation.setText(history.getPLactation());
-                    if (history.getImagesSmoking() != null) {
-                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
-
-                        rvSmoking.setVisibility(View.VISIBLE);
-                        imageAdapter.setList(history.getImagesSmoking());
-                        rvSmoking.setAdapter(imageAdapter);
+                if (model_history != null) {
+                    Smoking.setChecked(model_history.isSmoking());
+                    Lactation.setChecked(model_history.isLactation());
+                    Chronic.setChecked(model_history.isChronic());
+                    Gastritis.setChecked(model_history.isGastritis());
+                    Pregnancy.setChecked(model_history.isPregnancy());
+                    if (Smoking.isChecked()) {
+                        if (model_history.getPSmoking() != null)
+                            etSmoking.setText(model_history.getPSmoking());
+                        if (model_history.getPSmokingOther() != null)
+                            etSmokingOther.setText(model_history.getPSmokingOther());
+                    } else {
+                        etSmoking.setVisibility(View.GONE);
+                        etSmokingOther.setVisibility(View.GONE);
                     }
-                    if (history.getImagesChronic() != null) {
-                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
+                    if (Chronic.isChecked()) {
+                        if (model_history.getPChronic() != null)
+                            etChronic.setText(model_history.getPChronic());
+                        if (model_history.getPChronicOther() != null)
+                            etChronicOther.setText(model_history.getPChronicOther());
+                    } else {
+                        etChronic.setVisibility(View.GONE);
+                        etChronicOther.setVisibility(View.GONE);
 
-                        rvChronic.setVisibility(View.VISIBLE);
-                        imageAdapter.setList(history.getImagesChronic());
-                        rvChronic.setAdapter(imageAdapter);
                     }
-                    if (history.getImagesGastritis() != null) {
-                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
-
-                        rvGastritis.setVisibility(View.VISIBLE);
-                        imageAdapter.setList(history.getImagesGastritis());
-                        rvGastritis.setAdapter(imageAdapter);
+                    if (Gastritis.isChecked()) {
+                        if (model_history.getPGastritis() != null)
+                            etGastritis.setText(model_history.getPGastritis());
+                        if (model_history.getPGastritisOther() != null)
+                            etGastritisOther.setText(model_history.getPGastritisOther());
+                    } else {
+                        etGastritis.setVisibility(View.GONE);
+                        etGastritisOther.setVisibility(View.GONE);
                     }
-                    if (history.getImagesPregnancy() != null) {
-                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
-
-                        rvPregnancy.setVisibility(View.VISIBLE);
-                        imageAdapter.setList(history.getImagesPregnancy());
-                        rvPregnancy.setAdapter(imageAdapter);
+                    if (Pregnancy.isChecked()) {
+                        if (model_history.getPPregnancy() != null)
+                            etPregnancy.setText(model_history.getPPregnancy());
+                        if (model_history.getPPregnancyOther() != null)
+                            etPregnancyOther.setText(model_history.getPPregnancyOther());
+                    } else {
+                        etPregnancy.setVisibility(View.GONE);
+                        etPregnancyOther.setVisibility(View.GONE);
                     }
-                    if (history.getImagesLactation() != null) {
-                        ListImageAdapter imageAdapter = new ListImageAdapter(null, getContext());
-
-                        rvLactation.setVisibility(View.VISIBLE);
-                        imageAdapter.setList(history.getImagesLactation());
-                        rvLactation.setAdapter(imageAdapter);
+                    if (Lactation.isChecked()) {
+                        if (model_history.getPLactation() != null)
+                            etLactation.setText(model_history.getPLactation());
+                        if (model_history.getPLactationOther() != null)
+                            etLactationOther.setText(model_history.getPLactationOther());
+                    } else {
+                        etLactationOther.setVisibility(View.GONE);
+                        etLactation.setVisibility(View.GONE);
                     }
 
-                } else System.out.println("Null at history");
+                } else {
+                    etSmoking.setVisibility(View.GONE);
+                    etSmokingOther.setVisibility(View.GONE);
+                    etChronic.setVisibility(View.GONE);
+                    etChronicOther.setVisibility(View.GONE);
+                    etGastritis.setVisibility(View.GONE);
+                    etGastritisOther.setVisibility(View.GONE);
+                    etPregnancy.setVisibility(View.GONE);
+                    etPregnancyOther.setVisibility(View.GONE);
+                    etLactationOther.setVisibility(View.GONE);
+                    etLactation.setVisibility(View.GONE);
+                    model_history = new Model_History();
+
+                    System.out.println("Null at history");
+                }
+
             } catch (Exception e) {
                 Log.e(TAG, "onCreateView: ", e);
             }
@@ -242,159 +251,6 @@ public class HistoryFragment extends Fragment {
             System.out.println("error history " + e);
         }
         return view;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println("from history");
-        System.out.println("request code : " + requestCode + " result code : " + resultCode);
-        List<String> urls = utils.getImages(resultCode, data);
-        ListImageAdapter image2 = new ListImageAdapter(urls, getContext());
-        if (urls == null) System.out.println("NULL url");
-        switch (requestCode) {
-            case PICK_IMAGE_SMOKING:
-                System.out.println("yes");
-                for (int i = 0; i < urls.size(); i++) {
-                    System.out.println(urls.get(i));
-                }
-                rvSmoking.setAdapter(image2);
-                lists[0] = urls;
-                break;
-            case PICK_IMAGE_GASTRITIS:
-                rvGastritis.setAdapter(image2);
-                lists[1] = urls;
-                break;
-            case PICK_IMAGE_PREGNANCY:
-                rvPregnancy.setAdapter(image2);
-
-                lists[2] = urls;
-                break;
-            case PICK_IMAGE_LACTATION:
-                rvLactation.setAdapter(image2);
-
-                lists[3] = urls;
-                break;
-            case PICK_IMAGE_CHRONIC:
-                rvChronic.setAdapter(image2);
-
-                lists[4] = urls;
-                break;
-        }
-
-
-    }
-
-    public void uploadToStorage(String path, final List<String> imageUris, final int type) {
-        if (imageUris == null) {
-            System.out.println("NULL");
-            return;
-        } else {
-            sizeOfLists += imageUris.size();
-            progressBar.setVisibility(View.VISIBLE);
-            textViewProgress.setVisibility(View.VISIBLE);
-
-            System.out.println("NOT NULL");
-        }
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference = firebaseDatabase.getReference();
-        Random random = new Random();
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        final StorageReference filePath = storageRef.child(String.valueOf(Primary_key)).child("history").child(path);
-        for (String imageUri : imageUris) {
-            final String image_name = String.valueOf(random.nextInt((int) 1e9));
-            filePath.child(image_name).putFile(Uri.parse(imageUri)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                    filePath.child(image_name).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            List<String> list;
-                            switch (type) {
-                                case PICK_IMAGE_SMOKING:
-                                    list = model_history.getImagesSmoking();
-                                    if (list == null)
-                                        list = new ArrayList<>();
-                                    list.add(uri.toString());
-                                    model_history.setImagesSmoking(list);
-                                    break;
-                                case PICK_IMAGE_PREGNANCY:
-
-
-                                    list = model_history.getImagesPregnancy();
-                                    if (list == null)
-                                        list = new ArrayList<>();
-                                    list.add(uri.toString());
-                                    model_history.setImagesPregnancy(list);
-                                    break;
-
-                                case PICK_IMAGE_LACTATION:
-                                    list = model_history.getImagesLactation();
-                                    if (list == null)
-                                        list = new ArrayList<>();
-
-                                    list.add(uri.toString());
-                                    model_history.setImagesLactation(list);
-                                    break;
-
-                                case PICK_IMAGE_CHRONIC:
-
-                                    list = model_history.getImagesChronic();
-                                    if (list == null)
-                                        list = new ArrayList<>();
-
-                                    list.add(uri.toString());
-                                    model_history.setImagesChronic(list);
-                                    break;
-
-                                case PICK_IMAGE_GASTRITIS:
-                                    list = model_history.getImagesGastritis();
-                                    if (list == null)
-                                        list = new ArrayList<>();
-
-                                    list.add(uri.toString());
-                                    model_history.setImagesGastritis(list);
-                            }
-
-                            UpdatePatientActivity.allInfo.setHistory(model_history);
-                            databaseReference.child(PatientFragment.ALL_PATIENT).child(String.valueOf(Primary_key)).setValue(UpdatePatientActivity.allInfo);
-
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            System.out.println("fAIL " + e);
-                        }
-                    });
-
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    System.out.println("fail  " + e);
-                }
-            }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    ++progress;
-                    if (progress < sizeOfLists) {
-
-                        textViewProgress.setText(progress + " / " + sizeOfLists + " images uploaded\n         pleas wait");
-                    } else if (progress == sizeOfLists) {
-                        textViewProgress.setText("uploaded Successfully");
-
-                        textViewProgress.setVisibility(View.INVISIBLE);
-                        progressBar.setVisibility(View.INVISIBLE);
-                        progress = 0;
-                        sizeOfLists = 0;
-                    }
-                }
-            });
-
-        }
     }
 
 

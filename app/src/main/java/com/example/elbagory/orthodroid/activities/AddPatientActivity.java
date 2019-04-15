@@ -26,7 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AddPatientActivity extends AppCompatActivity {
     private static final String RECYCLER_VIEW_ROW = "RecyclerViewRow";
     static EditText etName, etId, etAge, etOccupation, etWeight, etInfo;
-    public static final String ALL_PATIENT = "all_patient_test";
+    public static final String ALL_PATIENT = "all_patient";
     public static final String PRIMARY_KEY = "Primary_key";
     // this Primary_key help us to get data for this user
     private Integer Primary_key = 0;
@@ -57,7 +57,7 @@ public class AddPatientActivity extends AppCompatActivity {
 
                 if (etName.getText().length() == 0 || etId.getText().length() == 0 ||
                         etAge.getText().length() == 0 || etOccupation.getText().length() == 0 ||
-                        etWeight.getText().length() == 0 || etInfo.getText().length() == 0) {
+                        etWeight.getText().length() == 0) {
                     TastyToast.makeText(AddPatientActivity.this, "Something Missed....", TastyToast.LENGTH_SHORT, TastyToast.ERROR).show();
 
 

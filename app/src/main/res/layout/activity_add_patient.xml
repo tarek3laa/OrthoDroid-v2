@@ -180,7 +180,7 @@
             android:layout_margin="30dp"
             android:background="@drawable/button_style"
             android:fontFamily="monospace"
-            android:text="save"
+            android:text="add new patient"
             android:textAllCaps="false"
             android:textColor="@color/white_color"
             android:textSize="20sp" />

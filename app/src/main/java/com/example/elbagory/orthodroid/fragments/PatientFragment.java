@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.example.elbagory.orthodroid.Models.Model_Patient;
 import com.example.elbagory.orthodroid.Models.RecyclerViewRow_Model;
 import com.example.elbagory.orthodroid.R;
+import com.example.elbagory.orthodroid.activities.AddPatientActivity;
 import com.example.elbagory.orthodroid.activities.UpdatePatientActivity;
 import com.example.elbagory.orthodroid.utils.GetTimeFromInternet;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +32,7 @@ import androidx.fragment.app.Fragment;
  */
 public class PatientFragment extends Fragment {
     static EditText etName, etId, etAge, etOccupation, etWeight, etInfo;
-    public static final String ALL_PATIENT = "all_patient_test";
+    public static final String ALL_PATIENT = AddPatientActivity.ALL_PATIENT;
     public static final String PRIMARY_KEY = "Primary_key";
     // this Primary_key help us to get data for this user
     Integer Primary_key = 0;
